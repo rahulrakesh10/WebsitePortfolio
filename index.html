@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <title>Rahul Rakesh's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div id="progress-bar">
+        <div class="progress"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <a href="#" class="logo">Rahul Rakesh</a>
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Parallax Section -->
+    <section>
+        <img src="bg.jpg" id="bg" alt="Background">
+        <img src="moon(1).png" id="moon" alt="Moon">
+        <img src="mountain.png" id="mountain" alt="Mountain">
+        <img src="road.png" id="road" alt="Road">
+        <h2 id="text">Welcome</h2>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            I am a passionate and driven aspiring Computer Science Student with a strong foundation in programming languages like Java, Python, and C. 
+        </p>
+        <p>
+            My journey has been shaped by building and optimizing solution that are both functional and efficient. 
+            From designing intuitive GUI applications like calculators and games to crafting algorithms that solve complex problems, 
+            I thrive on challenges that demand creativity and precision.
+        </p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+
+        <style>
+            .fa {
+              padding: 20px;
+              font-size: 30px;
+              width: 30px;
+              text-align: center;
+              text-decoration: none;
+              margin: 5px 2px;
+              border-radius: 50%;
+            }
+
+            .fa:hover {
+                opacity: 0.7;
+            }
+
+            .fa-linkedin {   
+                background: #02abf9;   
+                color: white; 
+            }
+
+            .fa-github {
+                background: #333;
+                color: white;
+            }
+        </style>
+        
+        <h2>Contact</h2>
+        <p>Email: rahul.rakesh1012@gmail.com</p>
+        <p>Phone: +1 437 983 4874</p>
+        <div class="button-container">
+        <a href="https://www.linkedin.com/in/rahulrakesh10/" class="fa fa-linkedin" target="_blank"></a>
+        <a href="https://github.com/rahulrakesh10" class="fa fa-github" target="_blank"></a>
+        </div>
+          
+
+        <p>Feel free to connect with me!</p>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // Parallax effect
+        let bg = document.getElementById('bg');
+        let moon = document.getElementById('moon');
+        let mountain = document.getElementById('mountain');
+        let road = document.getElementById('road');
+        let text = document.getElementById('text');
+
+        window.addEventListener('scroll', function() {
+            let value = window.scrollY;
+            bg.style.top = value * 0.5 + 'px';
+            moon.style.left = -value * 0.5 + 'px';
+            mountain.style.top = -value * 0.15 + 'px';
+            road.style.top = value * 0.15 + 'px';
+            text.style.top = value * 1 + 'px';
+        });
+
+        // Scroll progress bar
+        window.addEventListener('scroll', function() {
+            const progressBar = document.querySelector('#progress-bar .progress');
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = (window.scrollY / totalHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+    </script>
+</body>
+</html>
