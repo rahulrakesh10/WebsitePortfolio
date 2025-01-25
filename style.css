@@ -169,3 +169,68 @@ p {
     transform: translateY(-5px);
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 }
+/* Projects Section */
+#projects {
+    padding: 50px 20px;
+    text-align: center;
+    color: white;
+}
+
+#projects h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.projects-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Wrap items on smaller screens */
+    gap: 20px; /* Space between items */
+    margin-top: 20px;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.05); /* Card background */
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px; /* Fixed width for consistency */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.project-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.project-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.project-card p {
+    font-size: 1em;
+    color: #d1d1d1;
+}
+
+/* GitHub Link Styling */
+.project-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #4B0082; /* Indigo background */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.project-link:hover {
+    background: #37006d;
+    transform: scale(1.05); /* Slightly enlarge the link on hover */
+}
