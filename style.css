@@ -234,3 +234,34 @@ p {
     background: #37006d;
     transform: scale(1.05); /* Slightly enlarge the link on hover */
 }
+/* Responsive Design for Projects Section */
+@media (max-width: 768px) {
+    .projects-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items */
+    }
+
+    .project-card {
+        width: 90%; /* Make the cards fill most of the screen width */
+        margin-bottom: 20px; /* Add spacing between stacked cards */
+    }
+
+    .project-link {
+        font-size: 1em; /* Increase font size for readability */
+        padding: 12px 20px; /* Add more padding for touch-friendly buttons */
+    }
+}
+
+@media (max-width: 480px) {
+    #projects h2 {
+        font-size: 2em; /* Reduce title size for smaller screens */
+    }
+
+    .project-card h3 {
+        font-size: 1.2em; /* Adjust heading size for mobile */
+    }
+
+    .project-card p {
+        font-size: 0.9em; /* Adjust paragraph size for readability */
+    }
+}
