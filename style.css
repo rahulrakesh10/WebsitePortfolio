@@ -286,7 +286,7 @@ p {
     }
 
     .logo {
-        flex: 1;
+        display: none;
     }
 
     .menu-toggle {
