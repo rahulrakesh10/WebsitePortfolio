@@ -16,6 +16,7 @@
 
     <!-- Navigation -->
     <header>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <a href="#" class="logo">Rahul Rakesh</a>
         <ul>
             <li><a href="#" class="active">Home</a></li>
@@ -136,5 +137,10 @@
             progressBar.style.width = progress + '%';
         });
     </script>
+    <script>
+        function toggleMenu() {
+            document.querySelector('header ul').classList.toggle('show');
+        }
+    </script>    
 </body>
 </html>
