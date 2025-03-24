@@ -143,6 +143,14 @@
         }
     </script>    
     <script>
+        document.querySelectorAll('header ul li a').forEach(link => {
+        link.addEventListener('click', function() {
+        document.querySelectorAll('header ul li a').forEach(item => item.classList.remove('active'));
+        this.classList.add('active');
+        });
+        });
+    </script>
+    <script>
         // Auto-close menu after clicking a link
         document.querySelectorAll('header ul li a').forEach(link => {
         link.addEventListener('click', function() {
