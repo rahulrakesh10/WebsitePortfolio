@@ -25,6 +25,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    flex-wrap: wrap;
 }
 
 header .logo {
@@ -276,6 +277,26 @@ p {
     .project-link {
         font-size: 1em;
         padding: 12px 20px;
+    }
+
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        flex: 1;
+    }
+
+    .menu-toggle {
+        margin-left: auto;
+    }
+
+    header ul {
+        right: 10px;
+        top: 50px;
+        text-align: left;
     }
 }
 

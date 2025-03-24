@@ -19,7 +19,7 @@
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <a href="#" class="logo">Rahul Rakesh</a>
         <ul>
-            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -142,5 +142,22 @@
             document.querySelector('header ul').classList.toggle('show');
         }
     </script>    
+    <script>
+        document.querySelectorAll('header ul li a').forEach(link => {
+        link.addEventListener('click', function() {
+        document.querySelectorAll('header ul li a').forEach(item => item.classList.remove('active'));
+        this.classList.add('active');
+        });
+        });
+    </script>
+    <script>
+        // Auto-close menu after clicking a link
+        document.querySelectorAll('header ul li a').forEach(link => {
+        link.addEventListener('click', function() {
+            document.querySelector('header ul').classList.remove('show');
+        });
+    });
+    </script>
+    
 </body>
 </html>
