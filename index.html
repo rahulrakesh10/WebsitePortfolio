@@ -153,6 +153,96 @@
             z-index: 2;
             pointer-events: none;
         }
+        #moon {
+            position: absolute;
+            top: 30px;      /* Adjust as needed */
+            right: 30px;    /* Adjust as needed */
+            width: 120px;   /* Adjust size as needed */
+            height: auto;
+            z-index: 3;
+            pointer-events: none;
+            opacity: 1;
+        }
+        @media (max-width: 700px) {
+            .project-carousel-3d {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                width: 100vw;
+                min-height: 240px;
+                padding: 0;
+                margin: 0;
+                position: relative;
+            }
+            #project-cards-3d {
+                width: 90vw;
+                min-width: 0;
+                height: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: visible;
+            }
+            .project-card-3d {
+                width: 88vw;
+                min-width: 0;
+                max-width: 95vw;
+                min-height: 220px;
+                max-height: none;
+                padding: 18px 10px 18px 10px;
+                font-size: 1em;
+                margin: 0 auto;
+                box-sizing: border-box;
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                height: auto;
+                overflow: visible;
+            }
+            .project-card-3d h3 {
+                font-size: 1.3em;
+                margin-bottom: 10px;
+            }
+            .project-card-3d p {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+            .project-card-3d .project-link {
+                margin-top: 10px;
+                margin-bottom: 0;
+                align-self: center;
+            }
+            .project-card-3d.left,
+            .project-card-3d.right {
+                display: none !important;
+            }
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 2em;
+                margin: 0 2vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10 !important;
+                background: #252525;
+                color: #fff;
+                border: none;
+                border-radius: 50%;
+                position: relative !important;
+                opacity: 1;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                transition: background 0.2s;
+            }
+            .carousel-btn:active,
+            .carousel-btn:focus {
+                outline: 2px solid #fff;
+            }
+        }
     </style>
 </head>
 <body>
@@ -175,7 +265,6 @@
 
     <!-- Parallax Section -->
     <section class="parallax-bg">
-        <img src="moon(1).png" id="moon" alt="Moon">
         <div class="welcome-center">
             <h2 id="text">WELCOME</h2>
         </div>
@@ -250,12 +339,20 @@
             if (window.innerWidth < 600) top = Math.min(top, 40);
             else if (window.innerWidth < 900) top = Math.min(top, 30);
             else top = Math.min(top, 25);
-            moon.style.left = left + 'vw';
-            moon.style.top = top + 'vh';
+            // moon.style.left = left + 'vw';
+            // moon.style.top = top + 'vh';
+            // moon.style.opacity = '1';
+
+            
             mountain.style.bottom = -value * 0.12 + 'px'; // Moves up slightly
         }
         window.addEventListener('scroll', parallaxScrollHandler);
-        document.addEventListener('DOMContentLoaded', parallaxScrollHandler);
+        window.addEventListener('load', () => {
+            parallaxScrollHandler();  // Ensures the moon gets correct position immediately
+            });
+
+        parallaxScrollHandler();
+        startShootingStars();    // Start effects after everything loads
 
         // Scroll progress bar
         window.addEventListener('scroll', function() {
@@ -310,21 +407,19 @@
         // Create shooting stars at much more random intervals
         function startShootingStars() {
             // Create initial shooting stars
-            for (let i = 0; i < 4; i++) createShootingStar();
-            
+            for (let i = 0; i < 2; i++) createShootingStar(); // Reduced from 4 to 2
             // Set up much more frequent intervals for new shooting stars
             const createRandomShootingStar = () => {
-                const delay = Math.random() * 1500 + 500; // 0.5-2 seconds
+                const delay = Math.random() * 2000 + 2000; // 2-4 seconds (slower)
                 setTimeout(() => {
-                    // Always create 3-5 stars at once
-                    const starCount = Math.floor(Math.random() * 3) + 3; // 3-5
+                    // Always create 1-2 stars at once (was 3-5)
+                    const starCount = Math.floor(Math.random() * 2) + 1; // 1-2
                     for (let i = 0; i < starCount; i++) {
-                        setTimeout(() => createShootingStar(), i * 120); // Stagger multiple stars
+                        setTimeout(() => createShootingStar(), i * 200); // Stagger multiple stars
                     }
                     createRandomShootingStar(); // Schedule next one
                 }, delay);
             };
-            
             createRandomShootingStar();
         }
 
