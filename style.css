@@ -42,10 +42,22 @@ body {
 }
 
 #moon {
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 600px;
+    height: auto;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 1;
+    max-width: none;
+    min-width: 0;
+    display: block;
+    box-sizing: content-box;
+    border: none;
+    background: none;
+    object-fit: contain;
 }
-
 
 @keyframes shooting-star-animation {
     0% {
@@ -649,17 +661,19 @@ html {
     border: 2px solid #fff;
 }
 
-
-
 @media (max-width: 900px) {
   #moon {
-    width: 180px;
+    width: 120px;
+    top: 15px;
+    right: 15px;
   }
 }
 
 @media (max-width: 600px) {
   #moon {
-    width: 90px;
+    width: 70px;
+    top: 10px;
+    right: 10px;
   }
 }
 
