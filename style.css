@@ -8,9 +8,62 @@
 }
 
 body {
-    background: #0a0a2e;
+    background: url('eastman-childs-CEtIM994vaI-unsplash.jpg') center top/cover no-repeat #000;
     min-height: 1500px;
     overflow-x: hidden;
+}
+
+/* Shooting Stars */
+.shooting-star {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
+                0 0 0 2px rgba(255, 255, 255, 0.1),
+                0 0 20px rgba(255, 255, 255, 1);
+    animation: shooting-star-animation 3s linear infinite;
+    z-index: 1;
+    opacity: 0;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, #fff, transparent);
+    animation: shooting-star-trail 3s linear infinite;
+}
+
+@keyframes shooting-star-animation {
+    0% {
+        transform: rotate(var(--star-angle, 45deg)) translateX(0);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(var(--star-angle, 45deg)) translateX(1000px);
+        opacity: 0;
+    }
+}
+
+@keyframes shooting-star-trail {
+    0% {
+        transform: translateY(-50%) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50%) translateX(-100px);
+        opacity: 0;
+    }
 }
 
 /* Navigation Bar */
@@ -96,25 +149,45 @@ section {
 }
 
 #mountain {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     position: absolute;
-    top: 0;
     left: 0;
-    z-index: 1;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    min-height: 110vh;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#mountain::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 20vh;
+    pointer-events: none;
+    z-index: 3;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000 100%);
+    display: block;
 }
 
 #text {
     position: relative;
     color: #fff;
-    font-size: 10em;
+    font-size: 7em;
     z-index: 3;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
 }
 
 /* Section Styling */
 section#about, section#projects, section#contact {
+    background: #000;
+    border-radius: 15px;
+    color: #ffffff;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -122,12 +195,6 @@ section#about, section#projects, section#contact {
     padding: 50px 20px;
     margin: 50px auto;
     width: 80%;
-    background: linear-gradient(135deg, #141e30, #243b55);
-    border-radius: 15px;
-    color: #ffffff;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 section#about:hover, section#projects:hover, section#contact:hover {
@@ -360,60 +427,46 @@ html {
 
 .about-card {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    min-height: 500px;
-    background: none;
-    margin: 50px auto;
+    align-items: center;
     padding: 50px 20px;
-}
-
-.card-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    margin: 50px auto;
     width: 80%;
-    max-width: 1100px;
     background: linear-gradient(135deg, #141e30, #243b55);
     border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.5);
-    padding: 40px 30px;
-    gap: 50px;
+    color: #ffffff;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 24px;
 }
 
-.card-left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    min-width: 220px;
-    max-width: 320px;
-    flex: 0 0 220px;
-    gap: 18px;
+.about-card h2 {
+    font-size: 2.2em;
+    margin-bottom: 18px;
+    color: #fff;
 }
 
-.profile-photo {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.3);
-    margin: 0;
+.about-card p {
+    font-size: 1.15em;
+    line-height: 1.7;
+    color: #d1d1d1;
+    margin-bottom: 18px;
 }
 
-.email {
+.about-card .email {
     color: #fff;
     font-size: 1.1em;
     word-break: break-all;
-    text-align: left;
+    text-align: center;
     margin-bottom: 12px;
 }
 
-.social-icons {
+.about-card .social-icons {
     display: flex;
     gap: 15px;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .social-icons .fa {
@@ -441,27 +494,6 @@ html {
     color: white;
 }
 
-.card-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    color: #fff;
-    min-width: 0;
-}
-
-.card-right h2 {
-    font-size: 2.2em;
-    margin-bottom: 18px;
-    color: #fff;
-}
-
-.card-right p {
-    font-size: 1.15em;
-    line-height: 1.7;
-    color: #d1d1d1;
-}
-
 @media (max-width: 900px) {
     .card-container {
         flex-direction: column;
@@ -475,6 +507,24 @@ html {
         margin-bottom: 20px;
     }
 }
+
+.welcome-center {
+    position: absolute;
+    top: 18vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+}
+
+.parallax-bg {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
 
 
 

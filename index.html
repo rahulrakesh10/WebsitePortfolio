@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="Logo.jpg">
     <title>Rahul Rakesh's Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/index.css">
     <style>
         section {
             min-height: 100vh;
@@ -20,6 +21,137 @@
             position: absolute;
             top: 0;
             left: 0;
+        }
+        .project-carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .carousel-btn {
+            background: #4B0082;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .carousel-btn:hover {
+            background: #37006d;
+        }
+        #project-cards {
+            width: 350px;
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .project-card {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .project-card.active {
+            display: flex;
+            animation: fadeIn 0.4s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .project-carousel-3d {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-top: 30px;
+            position: relative;
+            height: 320px;
+        }
+        #project-cards-3d {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 600px;
+            height: 320px;
+            position: relative;
+            perspective: 1200px;
+        }
+        .project-card-3d {
+            position: absolute;
+            width: 320px;
+            min-height: 220px;
+            background: rgba(134, 134, 147, 0.92); /* Stronger background for readability */
+            border-radius: 16px;
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.18);
+            text-align: center;
+            padding: 28px 24px;
+            color: #fff;
+            opacity: 0;
+            transform: scale(0.7) translateX(0) rotateY(0deg);
+            transition: 
+                opacity 0.4s, 
+                transform 0.5s cubic-bezier(.4,2,.6,1), 
+                z-index 0s;
+            z-index: 1;
+            pointer-events: none;
+            backdrop-filter: blur(2px);
+        }
+        .project-card-3d.active {
+            opacity: 1;
+            transform: scale(1) translateX(0) rotateY(0deg);
+            z-index: 3;
+            pointer-events: auto;
+        }
+        .project-card-3d.left {
+            opacity: 0.5;
+            transform: scale(0.85) translateX(-180px) rotateY(25deg);
+            z-index: 2;
+        }
+        .project-card-3d.right {
+            opacity: 0.5;
+            transform: scale(0.85) translateX(180px) rotateY(-25deg);
+            z-index: 2;
+        }
+        .carousel-btn {
+            background: #252525;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: background 0.2s;
+            z-index: 10;
+            margin: 0 10px;
+        }
+        .carousel-btn:hover {
+            background: #000000;
+        }
+        
+        #mountain {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 2;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -37,67 +169,62 @@
             <li><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
         </ul>
     </header>
 
     <!-- Parallax Section -->
-    <section>
-        <img src="Better Mountain.avif" id="mountain" alt="Mountain">
-        <h2 id="text">Welcome</h2>
+    <section class="parallax-bg">
+        <div class="welcome-center">
+            <h2 id="text">WELCOME</h2>
+        </div>
+        <img src="mountain.png" id="mountain" alt="Mountain">
     </section>
 
 
-    <!-- About Section (Card Style) -->
+    <!-- About Section (Simple Vertical) -->
     <section id="about" class="about-card">
-        <div class="card-container">
-            <div class="card-left">
-                <img src="IMG_6315.jpg" alt="Profile Photo" class="profile-photo">
-                <div class="email">rahul.rakesh1012@gmail.com</div>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/rahulrakesh10/" class="fa fa-linkedin" target="_blank"></a>
-                    <a href="https://github.com/rahulrakesh10" class="fa fa-github" target="_blank"></a>
-                </div>
+        <h2>About Me</h2>
+        <p>I am a Computer Science Student with a strong foundation in programming languages like Java, Python, and C. My journey has been shaped by building and optimizing solutions that are both functional and efficient. From designing intuitive GUI applications like calculators and games to crafting algorithms that solve complex problems, I thrive on challenges that demand creativity and precision.</p>
+        <div class="about-contacts">
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/rahulrakesh10/" class="fa fa-linkedin" target="_blank"></a>
+                <a href="https://github.com/rahulrakesh10" class="fa fa-github" target="_blank"></a>
             </div>
-            <div class="card-right">
-                <h2>About Me</h2>
-                <p>I am a Computer Science Student with a strong foundation in programming languages like Java, Python, and C. My journey has been shaped by building and optimizing solutions that are both functional and efficient. From designing intuitive GUI applications like calculators and games to crafting algorithms that solve complex problems, I thrive on challenges that demand creativity and precision.</p>
-            </div>
+            <div class="email">rahul.rakesh1012@gmail.com</div>
         </div>
     </section>
 
     <section id="projects">
         <h2>Projects</h2>
-    
-        <!-- Row 1 -->
-        <div class="projects-container">
-            <div class="project-card">
-                <h3>Portfolio Website</h3>
-                <p>This is my personal portfolio website showcasing my skills and projects, with the help of html and css.</p>
-                <a href="https://github.com/rahulrakesh10/WebsitePortfolio" target="_blank" class="project-link">View on GitHub</a>
+        <div class="project-carousel-3d">
+            <button id="prev-project" class="carousel-btn">&lt;</button>
+            <div id="project-cards-3d">
+                <div class="project-card-3d">
+                    <h3>Portfolio Website</h3>
+                    <p>This is my personal portfolio website showcasing my skills and projects, with the help of html and css.</p>
+                    <a href="https://github.com/rahulrakesh10/WebsitePortfolio" target="_blank" class="project-link">View on GitHub</a>
+                </div>
+                <div class="project-card-3d">
+                    <h3>Snake Game</h3>
+                    <p>A classic snake game built using Java and GUI components for an interactive experience.</p>
+                    <a href="https://github.com/rahulrakesh10/Projects/tree/main/SnakeFolder" target="_blank" class="project-link">View on GitHub</a>
+                </div>
+                <div class="project-card-3d">
+                    <h3>Calculator</h3>
+                    <p>A fully functional calculator application built with Java and GUI for a user-friendly interface.</p>
+                    <a href="https://github.com/rahulrakesh10/Projects/blob/main/Calculator.java" target="_blank" class="project-link">View on GitHub</a>
+                </div>
+                <div class="project-card-3d">
+                    <h3>Typing Test</h3>
+                    <p>A Python-based typing speed test that calculates your words per minute and accuracy in real time.</p>
+                    <a href="https://github.com/rahulrakesh10/Projects/blob/main/TypingTest.py" target="_blank" class="project-link">View on GitHub</a>
+                </div>
             </div>
-            <div class="project-card">
-                <h3>Snake Game</h3>
-                <p>A classic snake game built using Java and GUI components for an interactive experience.</p>
-                <a href="https://github.com/rahulrakesh10/Projects/tree/main/SnakeFolder" target="_blank" class="project-link">View on GitHub</a>
-            </div>
-            <div class="project-card">
-                <h3>Calculator</h3>
-                <p>A fully functional calculator application built with Java and GUI for a user-friendly interface.</p>
-                <a href="https://github.com/rahulrakesh10/Projects/blob/main/Calculator.java" target="_blank" class="project-link">View on GitHub</a>
-            </div>
-        </div>
-    
-        <!-- Row 2 (Single Centered Card) -->
-        <div class="projects-container single-center">
-            <div class="project-card">
-                <h3>Typing Test</h3>
-                <p>A Python-based typing speed test that calculates your words per minute and accuracy in real time.</p>
-                <a href="https://github.com/rahulrakesh10/Projects/blob/main/TypingTest.py" target="_blank" class="project-link">View on GitHub</a>
-            </div>
+            <button id="next-project" class="carousel-btn">&gt;</button>
         </div>
     </section>
     
+    <div id="react-projects"></div>
     
 
     <!-- JavaScript -->
@@ -116,6 +243,73 @@
             const progress = (window.scrollY / totalHeight) * 100;
             progressBar.style.width = progress + '%';
         });
+
+        // Shooting Stars Effect
+        function createShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            
+            // Much more random starting position across the entire screen
+            const startX = Math.random() * (window.innerWidth + 200) - 100; // Can start off-screen
+            const startY = Math.random() * (window.innerHeight * 0.8); // Top 80% of screen
+            
+            shootingStar.style.left = startX + 'px';
+            shootingStar.style.top = startY + 'px';
+            
+            // Random rotation angle for bottom-right direction (45 to 135 degrees)
+            const angle = Math.random() * 90 + 45; // Between 45 and 135 degrees (bottom-right)
+            shootingStar.style.transform = `rotate(${angle}deg)`;
+            
+            // Apply the same rotation to the animation
+            shootingStar.style.setProperty('--star-angle', angle + 'deg');
+            
+            // Random size for variety
+            const size = Math.random() * 1 + 1; // Between 1-2px
+            shootingStar.style.width = size + 'px';
+            shootingStar.style.height = size + 'px';
+            
+            // Random animation duration
+            const duration = Math.random() * 4 + 2; // Between 2-6 seconds
+            shootingStar.style.animationDuration = duration + 's';
+            
+            // Random opacity for some stars to be more subtle
+            const opacity = Math.random() * 0.8 + 0.2; // Between 0.2-1.0
+            shootingStar.style.opacity = opacity;
+            
+            document.body.appendChild(shootingStar);
+            
+            // Remove the shooting star after animation completes
+            setTimeout(() => {
+                if (shootingStar.parentNode) {
+                    shootingStar.parentNode.removeChild(shootingStar);
+                }
+            }, duration * 1000);
+        }
+
+        // Create shooting stars at much more random intervals
+        function startShootingStars() {
+            // Create initial shooting star
+            createShootingStar();
+            
+            // Set up much more random intervals for new shooting stars
+            const createRandomShootingStar = () => {
+                // Much more varied timing - sometimes very quick, sometimes longer gaps
+                const delay = Math.random() * 8000 + 500; // 0.5-8.5 seconds
+                setTimeout(() => {
+                    // Sometimes create multiple stars at once for meteor showers
+                    const starCount = Math.random() > 0.8 ? Math.floor(Math.random() * 3) + 1 : 1;
+                    for (let i = 0; i < starCount; i++) {
+                        setTimeout(() => createShootingStar(), i * 200); // Stagger multiple stars
+                    }
+                    createRandomShootingStar(); // Schedule next one
+                }, delay);
+            };
+            
+            createRandomShootingStar();
+        }
+
+        // Start shooting stars when page loads
+        window.addEventListener('load', startShootingStars);
     </script>
     <script>
         function toggleMenu() {
@@ -138,6 +332,36 @@
         });
     });
     </script>
-    
+    <script type="module" src="assets/index.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.project-card-3d');
+      let current = 0;
+
+      function updateCards() {
+        cards.forEach((card, i) => {
+          card.classList.remove('active', 'left', 'right');
+          if (i === current) {
+            card.classList.add('active');
+          } else if (i === (current - 1 + cards.length) % cards.length) {
+            card.classList.add('left');
+          } else if (i === (current + 1) % cards.length) {
+            card.classList.add('right');
+          }
+        });
+      }
+
+      document.getElementById('next-project').onclick = function() {
+        current = (current + 1) % cards.length;
+        updateCards();
+      };
+      document.getElementById('prev-project').onclick = function() {
+        current = (current - 1 + cards.length) % cards.length;
+        updateCards();
+      };
+
+      updateCards();
+    });
+    </script>
 </body>
 </html>
