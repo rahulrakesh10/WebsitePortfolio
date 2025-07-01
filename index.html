@@ -235,13 +235,27 @@
         let text = document.getElementById('text');
         let moon = document.getElementById('moon');
         let mountain = document.getElementById('mountain');
-        window.addEventListener('scroll', function() {
+        function parallaxScrollHandler() {
             let value = window.scrollY;
             text.style.top = 50 + value * 0.4 + 'px'; // Moves down as you scroll
-            moon.style.top = 8 + value * 0.18 + 'vh'; // Moves slower than text
-            moon.style.left = 40 + value * 0.06 + 'vw'; // Moves right as you scroll
+            // Moon moves gently right and slightly down, starting well to the right
+            let baseLeft = window.innerWidth < 600 ? 10 : window.innerWidth < 900 ? 35 : 55;
+            let baseTop = window.innerWidth < 600 ? 12 : 10;
+            let left = baseLeft + value * 0.008;
+            let top = baseTop + value * 0.004;
+            // Clamp so moon never goes off-screen
+            if (window.innerWidth < 600) left = Math.min(left, 60);
+            else if (window.innerWidth < 900) left = Math.min(left, 60);
+            else left = Math.min(left, 70);
+            if (window.innerWidth < 600) top = Math.min(top, 40);
+            else if (window.innerWidth < 900) top = Math.min(top, 30);
+            else top = Math.min(top, 25);
+            moon.style.left = left + 'vw';
+            moon.style.top = top + 'vh';
             mountain.style.bottom = -value * 0.12 + 'px'; // Moves up slightly
-        });
+        }
+        window.addEventListener('scroll', parallaxScrollHandler);
+        document.addEventListener('DOMContentLoaded', parallaxScrollHandler);
 
         // Scroll progress bar
         window.addEventListener('scroll', function() {
