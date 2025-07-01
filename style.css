@@ -8,7 +8,7 @@
 }
 
 body {
-    background: url('eastman-childs-CEtIM994vaI-unsplash.jpg') center top/cover no-repeat #000;
+    background: #000;
     min-height: 1500px;
     overflow-x: hidden;
 }
@@ -103,13 +103,15 @@ header ul li a {
     color: #fff;
     padding: 5px 10px;
     border-radius: 5px;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: color 0.3s ease;
+    background: none !important;
 }
 
 header ul li a:hover,
 header ul li a.active {
-    background: #4B0082;
     color: #fff;
+    border-bottom: 2px solid #fff;
+    background: none !important;
 }
 
 /* Hamburger Menu (hidden on desktop) */
@@ -172,6 +174,19 @@ section {
     display: block;
 }
 
+#mountain::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 16vh;
+    pointer-events: none;
+    z-index: 3;
+    background: linear-gradient(to top, rgba(0,0,0,0) 0%, #000 100%);
+    display: block;
+}
+
 #text {
     position: relative;
     color: #fff;
@@ -193,7 +208,7 @@ section#about, section#projects, section#contact {
     justify-content: center;
     align-items: center;
     padding: 50px 20px;
-    margin: 50px auto;
+    margin: 20px auto;
     width: 80%;
 }
 
@@ -523,6 +538,120 @@ html {
     min-height: 100vh;
     width: 100%;
     overflow: hidden;
+}
+
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.project-card-3d {
+    position: absolute;
+    width: 320px;
+    min-height: 220px;
+    background: rgba(10, 10, 10, 0.65); /* glassy black */
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+    text-align: center;
+    padding: 32px 24px;
+    color: #fff;
+    opacity: 0;
+    transform: scale(0.7) translateX(0) rotateY(0deg);
+    transition: 
+        opacity 0.4s, 
+        transform 0.5s cubic-bezier(.4,2,.6,1), 
+        z-index 0s;
+    z-index: 1;
+    pointer-events: none;
+    backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255,255,255,0.12);
+}
+
+.project-card-3d.active {
+    opacity: 1;
+    transform: scale(1) translateX(0) rotateY(0deg);
+    z-index: 3;
+    pointer-events: auto;
+    box-shadow: 0 12px 40px 0 rgba(0,0,0,0.25), 0 2px 8px 0 rgba(0,0,0,0.18);
+    border: 2px solid #fff;
+}
+
+.project-card-3d.left,
+.project-card-3d.right {
+    opacity: 0.5;
+    filter: blur(1.5px) grayscale(0.3);
+}
+
+.project-card-3d h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.project-card-3d p {
+    font-size: 1em;
+    color: #e0e0e0;
+    margin-bottom: 18px;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 22px;
+    background: #111;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s, border 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    border: 1.5px solid transparent;
+}
+
+.project-link:hover {
+    background: #000;
+    transform: scale(1.07);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    border: 1.5px solid #fff;
+}
+
+.carousel-btn {
+    background: rgba(10,10,10,0.7);
+    color: #fff;
+    border: 1.5px solid #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, border 0.2s;
+    z-index: 10;
+    margin: 0 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+.carousel-btn:hover {
+    background: #000;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    border: 2px solid #fff;
+}
+
+#moon {
+    position: absolute;
+    top: 4vh;
+    left: 55vw;
+    width: 800px;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+    filter: drop-shadow(0 0 64px #fff8) brightness(1.1);
 }
 
 

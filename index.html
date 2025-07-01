@@ -156,6 +156,7 @@
     </style>
 </head>
 <body>
+    <div id="starfield"></div>
     <!-- Scroll Progress Bar -->
     <div id="progress-bar">
         <div class="progress"></div>
@@ -174,6 +175,7 @@
 
     <!-- Parallax Section -->
     <section class="parallax-bg">
+        <img src="moon(1).png" id="moon" alt="Moon">
         <div class="welcome-center">
             <h2 id="text">WELCOME</h2>
         </div>
@@ -229,11 +231,16 @@
 
     <!-- JavaScript -->
     <script>
-        // Parallax effect for Welcome text
+        // Parallax effect for Welcome text, moon, and mountain
         let text = document.getElementById('text');
+        let moon = document.getElementById('moon');
+        let mountain = document.getElementById('mountain');
         window.addEventListener('scroll', function() {
             let value = window.scrollY;
-            text.style.top = value * 0.5 + 'px'; // Moves down as you scroll
+            text.style.top = 50 + value * 0.4 + 'px'; // Moves down as you scroll
+            moon.style.top = 8 + value * 0.18 + 'vh'; // Moves slower than text
+            moon.style.left = 40 + value * 0.06 + 'vw'; // Moves right as you scroll
+            mountain.style.bottom = -value * 0.12 + 'px'; // Moves up slightly
         });
 
         // Scroll progress bar
@@ -288,18 +295,17 @@
 
         // Create shooting stars at much more random intervals
         function startShootingStars() {
-            // Create initial shooting star
-            createShootingStar();
+            // Create initial shooting stars
+            for (let i = 0; i < 4; i++) createShootingStar();
             
-            // Set up much more random intervals for new shooting stars
+            // Set up much more frequent intervals for new shooting stars
             const createRandomShootingStar = () => {
-                // Much more varied timing - sometimes very quick, sometimes longer gaps
-                const delay = Math.random() * 8000 + 500; // 0.5-8.5 seconds
+                const delay = Math.random() * 1500 + 500; // 0.5-2 seconds
                 setTimeout(() => {
-                    // Sometimes create multiple stars at once for meteor showers
-                    const starCount = Math.random() > 0.8 ? Math.floor(Math.random() * 3) + 1 : 1;
+                    // Always create 3-5 stars at once
+                    const starCount = Math.floor(Math.random() * 3) + 3; // 3-5
                     for (let i = 0; i < starCount; i++) {
-                        setTimeout(() => createShootingStar(), i * 200); // Stagger multiple stars
+                        setTimeout(() => createShootingStar(), i * 120); // Stagger multiple stars
                     }
                     createRandomShootingStar(); // Schedule next one
                 }, delay);
@@ -362,6 +368,23 @@
 
       updateCards();
     });
+    </script>
+    <script>
+        // Star field generator
+        function generateStarField() {
+            const starfield = document.getElementById('starfield');
+            const numStars = 200; // Adjust for more/less stars
+            let stars = '';
+            for (let i = 0; i < numStars; i++) {
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const size = Math.random() * 1.2 + 0.3; // 0.3px to 1.5px
+                const opacity = Math.random() * 0.5 + 0.5; // 0.5 to 1
+                stars += `<div style="position:absolute;left:${x}vw;top:${y}vh;width:${size}px;height:${size}px;background:#fff;border-radius:50%;opacity:${opacity};box-shadow:0 0 2px #fff;"></div>`;
+            }
+            starfield.innerHTML = stars;
+        }
+        generateStarField();
     </script>
 </body>
 </html>
