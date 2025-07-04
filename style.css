@@ -581,9 +581,9 @@ html {
     opacity: 0;
     transform: scale(0.7) translateX(0) rotateY(0deg);
     transition: 
-        opacity 0.4s, 
-        transform 0.5s cubic-bezier(.4,2,.6,1), 
-        z-index 0s;
+        transform 0.3s cubic-bezier(.4,2,.6,1),
+        box-shadow 0.3s,
+        border 0.3s;
     z-index: 1;
     pointer-events: none;
     backdrop-filter: blur(12px);
@@ -597,6 +597,13 @@ html {
     pointer-events: auto;
     box-shadow: 0 12px 40px 0 rgba(0,0,0,0.25), 0 2px 8px 0 rgba(0,0,0,0.18);
     border: 2px solid #fff;
+}
+
+.project-card-3d.active:hover {
+    transform: scale(1.04) translateY(-8px) rotateY(0deg);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 2px #fff2;
+    border: 1.5px solid #fff3;
+    cursor: pointer;
 }
 
 .project-card-3d.left,
@@ -716,6 +723,27 @@ html {
     }
   }
   
+.email-btn {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 18px;
+    padding: 12px 28px;
+    font-size: 1.1em;
+    text-decoration: none;
+    margin: 18px 0 0 0;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.email-btn i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+.email-btn:hover {
+    background: #333;
+    color: #fff;
+}
 
 
 

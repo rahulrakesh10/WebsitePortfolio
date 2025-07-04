@@ -221,6 +221,160 @@
                 outline: 2px solid #fff;
             }
         }
+        .about-tabs {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .about-tab {
+            background: #222;
+            color: #fff;
+            border: none;
+            padding: 8px 22px;
+            border-radius: 18px 18px 0 0;
+            font-size: 1em;
+            cursor: pointer;
+            outline: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .about-tab.active {
+            background: #fff;
+            color: #222;
+            font-weight: bold;
+        }
+        .resume-btn {
+            background: #4B0082;
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            padding: 8px 18px;
+            font-size: 1em;
+            text-decoration: none;
+            margin-left: auto;
+            transition: background 0.2s;
+        }
+        .resume-btn:hover {
+            background: #37006d;
+        }
+        .about-content {
+            margin-top: 0;
+        }
+        .skills-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            font-size: 1.1em;
+        }
+        .skills-list li {
+            background: #252525;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 16px;
+            margin-bottom: 6px;
+        }
+        .resume-section {
+            margin-top: 32px;
+            text-align: center;
+        }
+        .resume-btn-large {
+            display: inline-block;
+            background: #111;
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            padding: 16px 36px;
+            font-size: 1.2em;
+            text-decoration: none;
+            margin: 0 auto;
+            transition: background 0.2s;
+        }
+        .resume-btn-large i {
+            margin-right: 10px;
+            font-size: 1.3em;
+        }
+        .resume-btn-large:hover {
+            background: #333;
+        }
+        .about-content {
+            margin-top: 0;
+        }
+        .skills-grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+            align-items: stretch;
+            margin-top: 24px;
+        }
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #252525;
+            color: #fff;
+            padding: 18px 18px 12px 18px;
+            border-radius: 16px;
+            font-size: 1.1em;
+            min-width: 120px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .skill-item i {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        .skills-list li {
+            background: #252525;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 16px;
+            margin-bottom: 6px;
+        }
+        .skill-svg {
+            width: 2.2em;
+            height: 2.2em;
+            margin-bottom: 10px;
+            display: block;
+            filter: brightness(0) invert(1);
+            object-fit: contain;
+            margin-left: auto;
+            margin-right: auto;
+            background: none;
+            padding: 0;
+            overflow: visible;
+        }
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+        .email-btn {
+            display: inline-block;
+            background: #111;
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            padding: 12px 28px;
+            font-size: 1.1em;
+            text-decoration: none;
+            margin: 18px 0 0 0;
+            transition: background 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .email-btn i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .email-btn:hover {
+            background: #333;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -253,17 +407,54 @@
 
     <!-- About Section (Simple Vertical) -->
     <section id="about" class="about-card">
-        <h2>About Me</h2>
-        <p>I am a Computer Science Student with a strong foundation in programming languages 
-            like Java, Python, and C. My journey has been shaped by building and optimizing solutions 
-            that are both functional and efficient. From designing intuitive GUI applications like calculators 
-            and games to crafting algorithms that solve complex problems, I thrive on challenges that demand creativity and precision.</p>
-        <div class="about-contacts">
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/rahulrakesh10/" class="fa fa-linkedin" target="_blank"></a>
-                <a href="https://github.com/rahulrakesh10" class="fa fa-github" target="_blank"></a>
+        <div class="about-tabs">
+            <button class="about-tab active" data-tab="about">About Me</button>
+            <button class="about-tab" data-tab="skills">Skills</button>
+        </div>
+        <div class="about-content about-content-about">
+            <p>I am a Computer Science Student with a strong foundation in programming languages 
+                like Java, Python, and C. My journey has been shaped by building and optimizing solutions 
+                that are both functional and efficient. From designing intuitive GUI applications like calculators 
+                and games to crafting algorithms that solve complex problems, I thrive on challenges that demand creativity and precision.</p>
+            <div class="about-contacts">
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/rahulrakesh10/" class="fa fa-linkedin" target="_blank"></a>
+                    <a href="https://github.com/rahulrakesh10" class="fa fa-github" target="_blank"></a>
+                </div>
+                <a href="mailto:rahul.rakesh1012@gmail.com" class="email-btn" title="Send Email"><i class="fa fa-envelope"></i>Email Me</a>
             </div>
-            <div class="email">rahul.rakesh1012@gmail.com</div>
+            <div class="resume-section">
+                <a href="Resume -1.pdf" class="resume-btn-large" download target="_blank"><i class="fa fa-file-pdf-o"></i> View Resume</a>
+            </div>
+        </div>
+        <div class="about-content about-content-skills" style="display:none;">
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <svg class="skill-svg" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 32 32"><path d="M11.622 24.74s-1.23.748.855.962c2.51.32 3.847.267 6.625-.267a10.02 10.02 0 0 0 1.763.855c-6.25 2.672-14.16-.16-9.244-1.55zm-.8-3.473s-1.336 1.015.748 1.23c2.725.267 4.862.32 8.55-.427a3.26 3.26 0 0 0 1.282.801c-7.534 2.244-15.976.214-10.58-1.603zm14.747 6.09s.908.748-1.015 1.336c-3.58 1.07-15.014 1.39-18.22 0-1.122-.48 1.015-1.175 1.7-1.282.695-.16 1.07-.16 1.07-.16-1.23-.855-8.175 1.763-3.526 2.51 12.77 2.084 23.296-.908 19.983-2.404zM12.2 17.633s-5.824 1.39-2.084 1.87c1.603.214 4.755.16 7.694-.053 2.404-.214 4.81-.64 4.81-.64s-.855.374-1.443.748c-5.93 1.55-17.312.855-14.052-.748 2.778-1.336 5.076-1.175 5.076-1.175zm10.42 5.824c5.984-3.1 3.206-6.09 1.282-5.717-.48.107-.695.214-.695.214s.16-.32.534-.427c3.794-1.336 6.786 4.007-1.23 6.09 0 0 .053-.053.107-.16zm-9.83 8.442c5.77.374 14.587-.214 14.8-2.94 0 0-.427 1.07-4.755 1.87-4.916.908-11.007.8-14.587.214 0 0 .748.64 4.542.855z" fill="#4e7896"/><path d="M18.996.001s3.313 3.366-3.152 8.442c-5.183 4.114-1.175 6.465 0 9.137-3.046-2.725-5.236-5.13-3.74-7.373C14.294 6.893 20.332 5.3 18.996.001zm-1.7 15.335c1.55 1.763-.427 3.366-.427 3.366s3.954-2.03 2.137-4.542c-1.656-2.404-2.94-3.58 4.007-7.587 0 0-10.953 2.725-5.717 8.763z" fill="#f58219"/></svg>
+                    <span>Java</span>
+                </div>
+                <div class="skill-item">
+                    <svg class="skill-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#3776AB" d="M16.002 2.002c-7.732 0-7.25 3.348-7.25 3.348l.008.75h7.242v1.5H6.002s-4 .454-4 7.25c0 6.797 3.5 6.572 3.5 6.572h2.25v-3.25s-.12-3.5 3.25-3.5h7.25s3.25.05 3.25-3.25v-5.25s.5-3.12-7.248-3.12zm-4.25 2.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/><path fill="#FFE052" d="M16.002 30c7.732 0 7.25-3.348 7.25-3.348l-.008-.75h-7.242v-1.5h7.25s4-.454 4-7.25c0-6.797-3.5-6.572-3.5-6.572h-2.25v3.25s.12 3.5-3.25 3.5h-7.25s-3.25-.05-3.25 3.25v5.25s-.5 3.12 7.248 3.12zm4.25-2.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+                    <span>Python</span>
+                </div>
+                <div class="skill-item"><i class="fa fa-cube"></i><span>C</span></div>
+                <div class="skill-item">
+                    <svg class="skill-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.6789 15.9759C18.6789 14.5415 17.4796 13.3785 16 13.3785C14.5206 13.3785 13.3211 14.5415 13.3211 15.9759C13.3211 17.4105 14.5206 18.5734 16 18.5734C17.4796 18.5734 18.6789 17.4105 18.6789 15.9759Z" fill="#53C1DE"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7004 11.1537C25.2661 8.92478 25.9772 4.79148 23.4704 3.39016C20.9753 1.99495 17.7284 4.66843 16.0139 6.27318C14.3044 4.68442 10.9663 2.02237 8.46163 3.42814C5.96751 4.82803 6.73664 8.8928 7.3149 11.1357C4.98831 11.7764 1 13.1564 1 15.9759C1 18.7874 4.98416 20.2888 7.29698 20.9289C6.71658 23.1842 5.98596 27.1909 8.48327 28.5877C10.9973 29.9932 14.325 27.3945 16.0554 25.7722C17.7809 27.3864 20.9966 30.0021 23.4922 28.6014C25.9956 27.1963 25.3436 23.1184 24.7653 20.8625C27.0073 20.221 31 18.7523 31 15.9759C31 13.1835 26.9903 11.7923 24.7004 11.1537ZM24.4162 19.667C24.0365 18.5016 23.524 17.2623 22.8971 15.9821C23.4955 14.7321 23.9881 13.5088 24.3572 12.3509C26.0359 12.8228 29.7185 13.9013 29.7185 15.9759C29.7185 18.07 26.1846 19.1587 24.4162 19.667ZM22.85 27.526C20.988 28.571 18.2221 26.0696 16.9478 24.8809C17.7932 23.9844 18.638 22.9422 19.4625 21.7849C20.9129 21.6602 22.283 21.4562 23.5256 21.1777C23.9326 22.7734 24.7202 26.4763 22.85 27.526ZM9.12362 27.5111C7.26143 26.47 8.11258 22.8946 8.53957 21.2333C9.76834 21.4969 11.1286 21.6865 12.5824 21.8008C13.4123 22.9332 14.2816 23.9741 15.1576 24.8857C14.0753 25.9008 10.9945 28.557 9.12362 27.5111ZM2.28149 15.9759C2.28149 13.874 5.94207 12.8033 7.65904 12.3326C8.03451 13.5165 8.52695 14.7544 9.12123 16.0062C8.51925 17.2766 8.01977 18.5341 7.64085 19.732C6.00369 19.2776 2.28149 18.0791 2.28149 15.9759ZM9.1037 4.50354C10.9735 3.45416 13.8747 6.00983 15.1159 7.16013C14.2444 8.06754 13.3831 9.1006 12.5603 10.2265C11.1494 10.3533 9.79875 10.5569 8.55709 10.8297C8.09125 9.02071 7.23592 5.55179 9.1037 4.50354ZM20.3793 11.5771C21.3365 11.6942 22.2536 11.85 23.1147 12.0406C22.8562 12.844 22.534 13.6841 22.1545 14.5453C21.6044 13.5333 21.0139 12.5416 20.3793 11.5771ZM16.0143 8.0481C16.6054 8.66897 17.1974 9.3623 17.7798 10.1145C16.5985 10.0603 15.4153 10.0601 14.234 10.1137C14.8169 9.36848 15.414 8.67618 16.0143 8.0481ZM9.8565 14.5444C9.48329 13.6862 9.16398 12.8424 8.90322 12.0275C9.75918 11.8418 10.672 11.69 11.623 11.5748C10.9866 12.5372 10.3971 13.5285 9.8565 14.5444ZM11.6503 20.4657C10.6679 20.3594 9.74126 20.2153 8.88556 20.0347C9.15044 19.2055 9.47678 18.3435 9.85796 17.4668C10.406 18.4933 11.0045 19.4942 11.6503 20.4657ZM16.0498 23.9915C15.4424 23.356 14.8365 22.6531 14.2448 21.8971C15.4328 21.9423 16.6231 21.9424 17.811 21.891C17.2268 22.6608 16.6369 23.3647 16.0498 23.9915ZM22.1667 17.4222C22.5677 18.3084 22.9057 19.1657 23.1742 19.9809C22.3043 20.1734 21.3652 20.3284 20.3757 20.4435C21.015 19.4607 21.6149 18.4536 22.1667 17.4222ZM18.7473 20.5941C16.9301 20.72 15.1016 20.7186 13.2838 20.6044C12.2509 19.1415 11.3314 17.603 10.5377 16.0058C11.3276 14.4119 12.2404 12.8764 13.2684 11.4158C15.0875 11.2825 16.9178 11.2821 18.7369 11.4166C19.7561 12.8771 20.6675 14.4086 21.4757 15.9881C20.6771 17.5812 19.7595 19.1198 18.7473 20.5941ZM22.8303 4.4666C24.7006 5.51254 23.8681 9.22726 23.4595 10.8426C22.2149 10.5641 20.8633 10.3569 19.4483 10.2281C18.6239 9.09004 17.7698 8.05518 16.9124 7.15949C18.1695 5.98441 20.9781 3.43089 22.8303 4.4666Z" fill="#53C1DE"/>
+                    </svg>
+                    <span>React</span>
+                </div>
+                <div class="skill-item">
+                    <svg class="skill-svg" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 32 32" preserveAspectRatio="xMidYMid" fill="#8cc84b"><path d="M14.656.427c.8-.453 1.82-.455 2.6 0L29.2 7.16c.747.42 1.247 1.253 1.24 2.114v13.5c.005.897-.544 1.748-1.332 2.16l-11.88 6.702a2.6 2.6 0 0 1-2.639-.073l-3.565-2.06c-.243-.145-.516-.26-.688-.495.152-.204.422-.23.642-.32.496-.158.95-.4 1.406-.656.115-.08.256-.05.366.022l3.04 1.758c.217.125.437-.04.623-.145l11.665-6.583c.144-.07.224-.222.212-.38V9.334c.016-.18-.087-.344-.25-.417L16.19 2.244a.41.41 0 0 0-.465-.001L3.892 8.93c-.16.073-.27.235-.25.415v13.37c-.014.158.07.307.215.375l3.162 1.785c.594.32 1.323.5 1.977.265a1.5 1.5 0 0 0 .971-1.409l.003-13.29c-.014-.197.172-.36.363-.34h1.52c.2-.005.357.207.33.405L12.18 23.88c.001 1.188-.487 2.48-1.586 3.063-1.354.7-3.028.553-4.366-.12l-3.4-1.88c-.8-.4-1.337-1.264-1.332-2.16v-13.5a2.46 2.46 0 0 1 1.282-2.141L14.656.427zM18.1 9.785c1.727-.1 3.576-.066 5.13.785 1.203.652 1.87 2.02 1.892 3.358-.034.18-.222.28-.394.267-.5-.001-1.002.007-1.504-.003-.213.008-.336-.188-.363-.376-.144-.64-.493-1.273-1.095-1.582-.924-.463-1.996-.44-3.004-.43-.736.04-1.527.103-2.15.535-.48.328-.624 1-.453 1.522.16.383.603.506.964.62 2.082.544 4.287.5 6.33 1.207.845.292 1.672.86 1.962 1.745.378 1.186.213 2.604-.63 3.556-.684.784-1.68 1.2-2.675 1.442-1.323.295-2.695.302-4.038.17-1.263-.144-2.577-.476-3.552-1.336-.834-.724-1.24-1.852-1.2-2.94.01-.184.193-.312.37-.297h1.5c.202-.014.35.16.36.35.093.6.322 1.25.854 1.6 1.026.662 2.313.616 3.487.635.973-.043 2.065-.056 2.86-.7.42-.367.543-.98.43-1.508-.123-.446-.6-.653-1-.8-2.055-.65-4.285-.414-6.32-1.15-.826-.292-1.625-.844-1.942-1.693-.443-1.2-.24-2.687.693-3.607.9-.915 2.22-1.268 3.47-1.394z"/></svg>
+                    <span>Node.js</span>
+                </div>
+                <div class="skill-item"><i class="fa fa-html5"></i><span>HTML</span></div>
+                <div class="skill-item"><i class="fa fa-css3"></i><span>CSS</span></div>
+                <div class="skill-item"><i class="fa fa-database"></i><span>SQL</span></div>
+                <div class="skill-item"><i class="fa fa-database"></i><span>Algorithms & Data Structures</span></div>
+                <div class="skill-item"><i class="fa fa-git"></i><span>Git & GitHub</span></div>
+            </div>
         </div>
     </section>
 
@@ -487,6 +678,22 @@
             starfield.innerHTML = stars;
         }
         generateStarField();
+    </script>
+    <script>
+    // Tab switching for About section
+    document.querySelectorAll('.about-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.about-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            if (this.dataset.tab === 'about') {
+                document.querySelector('.about-content-about').style.display = '';
+                document.querySelector('.about-content-skills').style.display = 'none';
+            } else {
+                document.querySelector('.about-content-about').style.display = 'none';
+                document.querySelector('.about-content-skills').style.display = '';
+            }
+        });
+    });
     </script>
 </body>
 </html>
