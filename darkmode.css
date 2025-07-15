@@ -1,0 +1,68 @@
+:root {
+    --bg: #fff;
+    --text: #181824;
+    --header-bg: #fff;
+    --card-bg: #fff;
+    --accent: #000;
+    --link: #1a0dab;
+    --border: #e0e0e0;
+}
+
+body.dark-mode {
+    --bg: #000;
+    --text: #f3f3f3;
+    --header-bg: #000;
+    --card-bg: #000;
+    --accent: #a259ff;
+    --link: #8ab4f8;
+    --border: #fff2;
+    background: var(--bg) !important;
+    color: var(--text) !important;
+}
+
+body {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+}
+header {
+    background: var(--header-bg) !important;
+}
+.about-card, .project-card-3d, .skill-item, .resume-btn, .resume-btn-large, .email-btn {
+    background: var(--card-bg) !important;
+    color: var(--text) !important;
+    border: 1.5px solid var(--border) !important;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.10);
+}
+a, .project-link {
+    color: var(--link) !important;
+}
+.carousel-btn {
+    background: var(--accent) !important;
+    color: #fff !important;
+    border: 2px solid var(--accent) !important;
+}
+#progress-bar .progress {
+    background: var(--accent) !important;
+} 
+
+body.dark-mode .carousel-btn {
+    background: #fff !important;
+    color: #000 !important;
+    border: 2px solid #000 !important;
+}
+
+body.dark-mode .project-link {
+    color: #fff !important;
+}
+
+.project-card-3d,
+.about-card,
+.skill-item,
+.resume-btn,
+.resume-btn-large,
+.email-btn {
+    background: var(--card-bg) !important;
+    color: var(--text) !important;
+    border: 1.5px solid var(--border) !important;
+    box-shadow: 0 8px 32px 0 rgba(255,255,255,0.04);
+} 

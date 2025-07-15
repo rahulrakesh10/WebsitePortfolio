@@ -8,6 +8,7 @@
     <title>Rahul Rakesh's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/index.css">
+    <link rel="stylesheet" href="darkmode.css" id="darkmode-css" disabled>
     <style>
         section {
             min-height: 100vh;
@@ -392,16 +393,16 @@
             <li><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><button id="darkmode-toggle" aria-label="Toggle dark mode">🌙</button></li>
         </ul>
     </header>
 
     <!-- Parallax Section -->
     <section class="parallax-bg">
         <div class="welcome-center">
-            <h2 id="text">WELCOME</h2>
+            <h2 id="text">WELCOME </h2>
         </div>
         <img src="mountain.png" id="mountain" alt="Mountain">
-        <img src="moon(1).png" id="moon" alt="Moon">
     </section>
 
 
@@ -694,6 +695,37 @@
             }
         });
     });
+    </script>
+    <script>
+    // Light/Dark mode toggle
+    const themeToggle = document.getElementById('darkmode-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const darkModeCss = document.getElementById('darkmode-css');
+    function setTheme(dark) {
+        if (dark) {
+            document.body.classList.add('dark-mode');
+            darkModeCss.removeAttribute('disabled');
+            themeIcon.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.body.classList.remove('dark-mode');
+            darkModeCss.setAttribute('disabled', '');
+            themeIcon.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+    themeToggle.addEventListener('click', function() {
+        setTheme(!document.body.classList.contains('dark-mode'));
+    });
+    // On load, set theme from localStorage or system preference
+    (function() {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setTheme(true);
+        } else {
+            setTheme(false);
+        }
+    })();
     </script>
 </body>
 </html>
