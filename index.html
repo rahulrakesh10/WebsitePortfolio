@@ -473,6 +473,14 @@
                         <a href="https://calendar-delta-mocha.vercel.app/" target="_blank" class="project-link">Live Demo</a>
                     </div>
                 </div>
+                <!-- <div class="project-card-3d">
+                    <h3>VitaLink</h3>
+                    <p>This is a AI health care solution that we build for our hackathon. It has a chatbot that can answer questions about health.
+                         It also .</p>
+                    <div style="display: flex; gap: 12px; justify-content: center; margin-top: 10px;">
+                        <a href="https://github.com/rahulrakesh10/WebsitePortfolio" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div> -->
                 <div class="project-card-3d">
                     <h3>Portfolio Website</h3>
                     <p>This is my personal portfolio website showcasing my skills and projects, with the help of html and css.</p>
@@ -699,18 +707,17 @@
     <script>
     // Light/Dark mode toggle
     const themeToggle = document.getElementById('darkmode-toggle');
-    const themeIcon = document.getElementById('theme-icon');
     const darkModeCss = document.getElementById('darkmode-css');
     function setTheme(dark) {
         if (dark) {
             document.body.classList.add('dark-mode');
             darkModeCss.removeAttribute('disabled');
-            themeIcon.textContent = '☀️';
+            themeToggle.textContent = '☀️';
             localStorage.setItem('theme', 'dark');
         } else {
             document.body.classList.remove('dark-mode');
             darkModeCss.setAttribute('disabled', '');
-            themeIcon.textContent = '🌙';
+            themeToggle.textContent = '🌙';
             localStorage.setItem('theme', 'light');
         }
     }

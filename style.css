@@ -229,10 +229,15 @@ section {
 
 #text {
     position: relative;
-    color: var(--text) !important;
+    color: #000 !important;
     font-size: 7em;
     z-index: 3;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+}
+
+/* Dark mode override */
+body.dark-mode #text {
+    color: #fff !important;
 }
 
 /* Section Styling */
@@ -357,6 +362,12 @@ p {
 
     header ul li {
         margin: 10px 0;
+    }
+
+    #darkmode-toggle {
+        font-size: 1.2em;
+        padding: 8px 12px;
+        margin: 5px 0;
     }
 
     .menu-toggle {
@@ -648,14 +659,15 @@ body.dark-mode .fa-github {
 .project-card-3d h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
-    color: #fff;
+    color: var(--text) !important;
     letter-spacing: 1px;
 }
 
 .project-card-3d p {
     font-size: 1em;
-    color: #e0e0e0;
+    color: var(--text) !important;
     margin-bottom: 18px;
+    opacity: 0.8;
 }
 
 .project-link {
