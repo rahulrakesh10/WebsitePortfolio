@@ -393,7 +393,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><button id="darkmode-toggle" aria-label="Toggle dark mode">🌙</button></li>
+            <li><button id="darkmode-toggle" aria-label="Toggle dark mode">☀️</button></li>
         </ul>
     </header>
 
@@ -724,13 +724,14 @@
     themeToggle.addEventListener('click', function() {
         setTheme(!document.body.classList.contains('dark-mode'));
     });
-    // On load, set theme from localStorage or system preference
+    // On load, set theme from localStorage or default to dark mode
     (function() {
         const saved = localStorage.getItem('theme');
-        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            setTheme(true);
-        } else {
+        if (saved === 'light') {
             setTheme(false);
+        } else {
+            // Default to dark mode if no saved preference or if saved is 'dark'
+            setTheme(true);
         }
     })();
     </script>
