@@ -812,3 +812,64 @@ body.dark-mode .fa-github {
     outline: none;
 }
 
+/* Demo Video Styles */
+.demo-btn {
+    background: var(--accent) !important;
+    color: #fff !important;
+    border: 2px solid var(--accent) !important;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.demo-btn:hover {
+    background: transparent !important;
+    color: var(--accent) !important;
+    transform: translateY(-2px);
+}
+
+.demo-video-container {
+    position: relative;
+    margin-top: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.close-demo-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.close-demo-btn:hover {
+    background: rgba(0,0,0,0.9);
+}
+
+body.dark-mode .demo-btn {
+    background: #fff !important;
+    color: #000 !important;
+    border: 2px solid #fff !important;
+}
+
+body.dark-mode .demo-btn:hover {
+    background: transparent !important;
+    color: #fff !important;
+}
+

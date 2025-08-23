@@ -480,7 +480,15 @@
                          It is built using Type Script, Python and CSS</p>
                     <div style="display: flex; gap: 12px; justify-content: center; margin-top: 10px;">
                         <a href="https://github.com/abdulselamadillmohammed/terrahacks_healthcare" target="_blank" class="project-link">GitHub</a>
-                        <a href="https://youtu.be/K8-ZX8REBXw" target="_blank" class="project-link">Live Demo</a>
+                        <button class="demo-btn" onclick="toggleVitaLinkDemo()">Watch Demo</button>
+                    </div>
+                    <div id="vitalink-demo" class="demo-video-container" style="display: none;">
+                        <video id="vitalink-video" controls width="100%" style="border-radius: 8px; margin-top: 15px;">
+                            <source src="vitalink-demo.mp4" type="video/mp4">
+                            <source src="vitalink-demo.webm" type="video/webm">
+                            Your browser does not support the video tag.
+                        </video>
+                        <button class="close-demo-btn" onclick="toggleVitaLinkDemo()">×</button>
                     </div>
                 </div>
                 <div class="project-card-3d">
@@ -736,6 +744,22 @@
             setTheme(true);
         }
     })();
+    </script>
+    <script>
+    // VitaLink Demo Video Toggle
+    function toggleVitaLinkDemo() {
+        const demoContainer = document.getElementById('vitalink-demo');
+        const video = document.getElementById('vitalink-video');
+        
+        if (demoContainer.style.display === 'none') {
+            demoContainer.style.display = 'block';
+            video.play();
+        } else {
+            demoContainer.style.display = 'none';
+            video.pause();
+            video.currentTime = 0;
+        }
+    }
     </script>
 </body>
 </html>
