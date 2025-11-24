@@ -2,15 +2,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&display=swap');
 
 :root {
-    --bg-dark: #050510;
+    /* Light Mode (Default) */
+    --bg: #f0f2f5;
+    --bg-card: rgba(255, 255, 255, 0.8);
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --accent-blue: #007bff;
+    --accent-purple: #6f42c1;
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+    --star-color: #1a1a1a;
+    --header-bg: rgba(255, 255, 255, 0.9);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --border-color: #e0e0e0;
+}
+
+body.dark-mode {
+    /* Dark Mode */
+    --bg: #050510;
     --bg-card: rgba(255, 255, 255, 0.03);
     --text-primary: #e0e0e0;
     --text-secondary: #a0a0a0;
     --accent-blue: #00f3ff;
     --accent-purple: #bc13fe;
     --glass-border: rgba(255, 255, 255, 0.08);
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Outfit', sans-serif;
+    --star-color: #fff;
+    --header-bg: rgba(5, 5, 16, 0.7);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --border-color: rgba(255, 255, 255, 0.08);
 }
 
 * {
@@ -21,10 +41,11 @@
 }
 
 body {
-    background: var(--bg-dark) !important;
+    background: var(--bg);
     min-height: 100vh;
     overflow-x: hidden;
-    color: var(--text-primary) !important;
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Shooting Stars */
@@ -34,14 +55,21 @@ body {
     left: 0;
     width: 2px;
     height: 2px;
-    background: #fff;
+    background: var(--star-color);
     border-radius: 50%;
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
         0 0 0 2px rgba(255, 255, 255, 0.1),
-        0 0 20px rgba(255, 255, 255, 1);
+        0 0 20px var(--star-color);
     animation: shooting-star-animation 3s linear infinite;
     z-index: 1;
     opacity: 0;
+}
+
+/* Update shadow for light mode visibility if needed, or use a variable for shadow opacity */
+body:not(.dark-mode) .shooting-star {
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05),
+        0 0 0 2px rgba(0, 0, 0, 0.05),
+        0 0 20px var(--star-color);
 }
 
 .shooting-star::before {
@@ -51,7 +79,7 @@ body {
     transform: translateY(-50%);
     width: 50px;
     height: 1px;
-    background: linear-gradient(90deg, #fff, transparent);
+    background: linear-gradient(90deg, var(--star-color), transparent);
     animation: shooting-star-trail 3s linear infinite;
 }
 
@@ -71,6 +99,12 @@ body {
     border: none;
     background: none;
     object-fit: contain;
+    /* Invert moon color in light mode if needed, or keep as is if it's an image that works on both */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+body:not(.dark-mode) #moon {
+    filter: invert(1) drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
 }
 
 @keyframes shooting-star-animation {
@@ -108,14 +142,14 @@ header {
     left: 0;
     width: 100%;
     padding: 20px 40px;
-    background: rgba(5, 5, 16, 0.7) !important;
+    background: var(--header-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--border-color);
     transition: all 0.3s ease;
 }
 
@@ -123,7 +157,7 @@ header .logo {
     font-family: var(--font-heading);
     font-size: 1.8em;
     font-weight: 700;
-    color: var(--text-primary) !important;
+    color: var(--text-primary);
     text-decoration: none;
     letter-spacing: -0.5px;
     text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
@@ -147,33 +181,34 @@ header ul li:last-child {
 
 header ul li a {
     text-decoration: none;
-    color: var(--text-secondary) !important;
+    color: var(--text-secondary);
     font-weight: 500;
     padding: 8px 16px;
     border-radius: 20px;
     transition: all 0.3s ease;
-    background: transparent !important;
+    background: transparent;
     font-family: var(--font-heading);
 }
 
 header ul li a.active,
 header ul li a:hover {
-    color: #fff !important;
-    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--text-primary);
+    background: rgba(125, 125, 125, 0.1);
     box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
-    border: 1px solid rgba(0, 243, 255, 0.3);
+    border: 1px solid var(--accent-blue);
 }
 
-/* Light mode (default) */
-header {
-    border-bottom: 1.5px solid #e0e0e0;
-    /* or your preferred light border */
+#darkmode-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    padding: 5px;
+    transition: transform 0.3s ease;
 }
 
-/* Dark mode: hide or fade the border */
-body.dark-mode header {
-    border-bottom: 1.5px solid transparent;
-    /* or rgba(255,255,255,0.08) for a faint line */
+#darkmode-toggle:hover {
+    transform: scale(1.1);
 }
 
 /* Hamburger Menu (hidden on desktop) */
@@ -195,7 +230,7 @@ body.dark-mode header {
 #progress-bar .progress {
     height: 100%;
     width: 0;
-    background: #fff;
+    background: var(--accent-blue);
     transition: width 0.1s ease-out;
 }
 
@@ -210,8 +245,8 @@ section {
     align-items: center;
     flex-direction: column;
     padding-bottom: 80px;
-    background: var(--bg) !important;
-    color: var(--text) !important;
+    /* background: var(--bg); Removed to allow body background (and stars) to show */
+    color: var(--text-primary);
 }
 
 #mountain {
@@ -223,6 +258,12 @@ section {
     min-height: 110vh;
     z-index: 2;
     pointer-events: none;
+    /* Invert mountain in light mode if it's a dark silhouette, or adjust opacity */
+}
+
+body:not(.dark-mode) #mountain {
+    /* Optional: adjustments for light mode mountain if needed */
+    /* filter: invert(1); */
 }
 
 #mountain::after {
@@ -234,7 +275,7 @@ section {
     height: 20vh;
     pointer-events: none;
     z-index: 3;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, var(--bg) 100%);
     display: block;
 }
 
@@ -247,13 +288,13 @@ section {
     height: 16vh;
     pointer-events: none;
     z-index: 3;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #000 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, var(--bg) 100%);
     display: block;
 }
 
 #text {
     position: relative;
-    color: #fff !important;
+    color: var(--text-primary);
     font-family: var(--font-heading);
     font-size: 8em;
     z-index: 3;
@@ -261,7 +302,13 @@ section {
     letter-spacing: -2px;
     line-height: 1;
     text-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
+    mix-blend-mode: normal;
+    /* Changed from overlay for better visibility in light mode */
+}
+
+body.dark-mode #text {
     mix-blend-mode: overlay;
+    color: #fff;
 }
 
 .hero-subtitle {
@@ -274,22 +321,17 @@ section {
     font-weight: 600;
 }
 
-/* Dark mode override */
-body.dark-mode #text {
-    color: #fff !important;
-}
-
 /* Section Styling */
 section#about,
 section#projects,
 section#contact {
-    background: var(--bg-card) !important;
+    background: var(--bg-card);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: 30px;
-    color: var(--text-primary) !important;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    color: var(--text-primary);
+    box-shadow: var(--card-shadow);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
@@ -306,14 +348,14 @@ section#about:hover,
 section#projects:hover,
 section#contact:hover {
     box-shadow: 0 0 30px rgba(0, 243, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-blue);
 }
 
 h2 {
     font-size: 2.5em;
     margin-bottom: 20px;
     font-weight: 600;
-    color: var(--text) !important;
+    color: var(--text-primary);
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -322,14 +364,14 @@ p {
     font-size: 1.2em;
     line-height: 1.8;
     font-weight: 300;
-    color: var(--text) !important;
+    color: var(--text-primary);
 }
 
 /* Projects Section */
 #projects {
     padding: 50px 20px;
     text-align: center;
-    color: white;
+    color: var(--text-primary);
 }
 
 #projects h2 {
@@ -348,12 +390,12 @@ p {
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-card);
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     padding: 30px;
     width: 320px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--card-shadow);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-align: center;
     position: relative;
@@ -367,7 +409,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     transform: translateX(-100%);
     transition: 0.5s;
 }
@@ -385,29 +427,36 @@ p {
 .project-card h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
-    color: white;
+    color: var(--text-primary);
 }
 
 .project-card p {
     font-size: 1em;
-    color: #d1d1d1;
+    color: var(--text-secondary);
 }
 
 .project-link {
     display: inline-block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background: #4B0082;
-    color: white;
+    margin-top: 15px;
+    padding: 12px 24px;
+    background: transparent;
+    color: var(--accent-blue);
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 0.9em;
-    transition: background 0.3s ease, transform 0.2s ease;
+    border-radius: 50px;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .project-link:hover {
-    background: #37006d;
-    transform: scale(1.05);
+    background: var(--accent-blue);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+    border-color: var(--accent-blue);
 }
 
 /* Responsive Design */
@@ -419,10 +468,11 @@ p {
         position: absolute;
         top: 60px;
         right: 20px;
-        background: rgba(0, 0, 0, 0.8);
+        background: var(--bg-card);
         border-radius: 10px;
         padding: 10px;
         display: none;
+        border: 1px solid var(--glass-border);
     }
 
     header ul.show {
@@ -442,7 +492,7 @@ p {
     .menu-toggle {
         display: block;
         font-size: 1.8em;
-        color: white;
+        color: var(--text-primary);
         cursor: pointer;
     }
 
@@ -500,30 +550,6 @@ p {
         top: 50px;
         text-align: left;
     }
-
-    @media (max-width: 768px) {
-        .projects-container {
-            padding: 10px;
-        }
-
-        .project-card {
-            width: 95%;
-            margin-bottom: 20px;
-            padding: 15px;
-        }
-    }
-
-    @media (max-width: 768px) {
-
-        section#about,
-        section#projects,
-        section#contact {
-            transform: none;
-            margin-top: 0;
-        }
-    }
-
-
 }
 
 @media (max-width: 480px) {
@@ -548,18 +574,6 @@ p {
     }
 }
 
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .about-text {
-        text-align: center;
-    }
-}
-
 html {
     scroll-behavior: smooth;
 }
@@ -572,10 +586,10 @@ html {
     padding: 50px 20px;
     margin: 50px auto;
     width: 80%;
-    background: linear-gradient(135deg, #141e30, #243b55);
+    background: var(--bg-card);
     border-radius: 15px;
-    color: #ffffff;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    color: var(--text-primary);
+    box-shadow: var(--card-shadow);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     gap: 24px;
@@ -584,18 +598,18 @@ html {
 .about-card h2 {
     font-size: 2.2em;
     margin-bottom: 18px;
-    color: #fff;
+    color: var(--text-primary);
 }
 
 .about-card p {
     font-size: 1.15em;
     line-height: 1.7;
-    color: #d1d1d1;
+    color: var(--text-secondary);
     margin-bottom: 18px;
 }
 
 .about-card .email {
-    color: #fff;
+    color: var(--text-primary);
     font-size: 1.1em;
     word-break: break-all;
     text-align: center;
@@ -638,30 +652,15 @@ html {
 }
 
 body.dark-mode .fa-linkedin {
-    background: #fff !important;
-    color: #111 !important;
-    border: 2px solid #111 !important;
+    background: #fff;
+    color: #111;
+    border: 2px solid #111;
 }
 
 body.dark-mode .fa-github {
-    background: #fff !important;
-    color: #111 !important;
-    border: none !important;
-}
-
-@media (max-width: 900px) {
-    .card-container {
-        flex-direction: column;
-        align-items: center;
-        width: 98%;
-        padding: 20px;
-        gap: 20px;
-    }
-
-    .card-left {
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
+    background: #fff;
+    color: #111;
+    border: none;
 }
 
 .welcome-center {
@@ -691,16 +690,22 @@ body.dark-mode .fa-github {
     z-index: 0;
 }
 
+/* Star styles for light/dark mode */
+#starfield div {
+    background: var(--star-color) !important;
+    box-shadow: 0 0 2px var(--star-color) !important;
+}
+
 .project-card-3d {
     position: absolute;
     width: 340px;
     min-height: 240px;
-    background: rgba(20, 20, 30, 0.6) !important;
+    background: var(--bg-card);
     border-radius: 24px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: var(--card-shadow);
     text-align: center;
     padding: 32px 24px;
-    color: var(--text-primary) !important;
+    color: var(--text-primary);
     opacity: 0;
     transform: scale(0.7) translateX(0) rotateY(0deg);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -722,8 +727,8 @@ body.dark-mode .fa-github {
 
 .project-card-3d.active:hover {
     transform: scale(1.04) translateY(-8px) rotateY(0deg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 0 2px #fff2;
-    border: 1.5px solid #fff3;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 0 2px rgba(255, 255, 255, 0.2);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
     cursor: pointer;
 }
 
@@ -736,45 +741,21 @@ body.dark-mode .fa-github {
 .project-card-3d h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
-    color: var(--text) !important;
+    color: var(--text-primary);
     letter-spacing: 1px;
 }
 
 .project-card-3d p {
     font-size: 1em;
-    color: var(--text) !important;
+    color: var(--text-secondary);
     margin-bottom: 18px;
     opacity: 0.8;
 }
 
-.project-link {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 24px;
-    background: transparent;
-    color: var(--accent-blue);
-    text-decoration: none;
-    border-radius: 50px;
-    font-size: 0.95em;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 1px solid var(--accent-blue);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.project-link:hover {
-    background: var(--accent-blue);
-    color: #000 !important;
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
-    border-color: var(--accent-blue);
-}
-
 .carousel-btn {
-    background: rgba(255, 255, 255, 0.1) !important;
-    color: #fff !important;
-    border: 1px solid var(--glass-border) !important;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -791,71 +772,87 @@ body.dark-mode .fa-github {
 }
 
 .carousel-btn:hover {
-    background: var(--accent-purple) !important;
+    background: var(--accent-purple);
+    color: #fff;
     box-shadow: 0 0 20px rgba(188, 19, 254, 0.4);
     transform: scale(1.1);
-    border-color: var(--accent-purple) !important;
+    border-color: var(--accent-purple);
 }
 
-@media (max-width: 900px) {
-    #moon {
-        width: 120px;
-        top: 15px;
-        right: 15px;
-    }
+/* Skills List */
+.skills-list li {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 8px 18px;
+    border-radius: 16px;
+    margin-bottom: 6px;
+    border: 1px solid var(--glass-border);
 }
 
-@media (max-width: 600px) {
-    #moon {
-        width: 70px;
-        top: 10px;
-        right: 10px;
-    }
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 18px 18px 12px 18px;
+    border-radius: 16px;
+    font-size: 1.1em;
+    min-width: 120px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--glass-border);
 }
 
-@media (max-width: 700px) {
-    .project-card-3d {
-        position: absolute !important;
-        opacity: 0 !important;
-        transform: scale(0.7) translateX(0) rotateY(0deg) !important;
-        pointer-events: none !important;
-    }
+.skill-item i {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
 
-    .project-card-3d.active {
-        position: relative !important;
-        opacity: 1 !important;
-        transform: none !important;
-        pointer-events: auto !important;
-        margin: 0 auto !important;
-        width: 90vw !important;
-    }
+.skill-svg {
+    width: 2.2em;
+    height: 2.2em;
+    margin-bottom: 10px;
+    display: block;
+    /* Invert icons in dark mode if they are black by default, or vice versa */
+    /* Assuming SVGs are colored or handle themselves, but let's check invert */
+    filter: none;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+    background: none;
+    padding: 0;
+    overflow: visible;
+}
 
-    .project-card-3d.left,
-    .project-card-3d.right {
-        display: none !important;
-    }
+body.dark-mode .skill-svg {
+    /* filter: brightness(0) invert(1); */
+    /* Only if needed for monochrome icons */
+}
 
-    .project-carousel-3d {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: auto;
-    }
+/* Resume Button */
+.resume-btn-large {
+    display: inline-block;
+    background: var(--text-primary);
+    color: var(--bg);
+    border: none;
+    border-radius: 18px;
+    padding: 16px 36px;
+    font-size: 1.2em;
+    text-decoration: none;
+    margin: 0 auto;
+    transition: background 0.2s;
+}
 
-    #project-cards-3d {
-        width: 100%;
-        height: auto;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.resume-btn-large:hover {
+    background: var(--accent-purple);
+    color: #fff;
 }
 
 .email-btn {
     display: inline-block;
-    background: #111;
-    color: #fff;
+    background: var(--text-primary);
+    color: var(--bg);
     border: none;
     border-radius: 18px;
     padding: 12px 28px;
@@ -866,111 +863,28 @@ body.dark-mode .fa-github {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.email-btn i {
-    margin-right: 10px;
-    font-size: 1.2em;
-}
-
 .email-btn:hover {
-    background: #333;
+    background: var(--accent-purple);
     color: #fff;
 }
 
-#darkmode-toggle {
-    position: static;
-    background: none;
+/* About Tabs */
+.about-tab {
+    background: var(--bg-card);
+    color: var(--text-primary);
     border: none;
-    font-size: 1.3em;
-    color: var(--text);
+    padding: 8px 22px;
+    border-radius: 18px 18px 0 0;
+    font-size: 1em;
     cursor: pointer;
-    margin-left: 0;
-    padding: 5px 10px;
-    vertical-align: middle;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    transition: color 0.3s;
-}
-
-#darkmode-toggle:focus {
     outline: none;
+    transition: background 0.2s, color 0.2s;
+    border: 1px solid var(--glass-border);
+    border-bottom: none;
 }
 
-/* Demo Video Styles */
-.demo-btn {
-    background: var(--accent) !important;
-    color: #fff !important;
-    border: 2px solid var(--accent) !important;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.demo-btn:hover {
-    background: transparent !important;
-    color: var(--accent) !important;
-    transform: translateY(-2px);
-}
-
-.demo-video-container {
-    position: relative;
-    margin-top: 15px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.close-demo-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-}
-
-.close-demo-btn:hover {
-    background: rgba(0, 0, 0, 0.9);
-}
-
-body.dark-mode .demo-btn {
-    background: #fff !important;
-    color: #000 !important;
-    border: 2px solid #fff !important;
-}
-
-body.dark-mode .demo-btn:hover {
-    background: transparent !important;
-    color: #fff !important;
-}
-
-@keyframes pulse {
-    0% {
-        text-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
-    }
-
-    50% {
-        text-shadow: 0 0 60px rgba(0, 243, 255, 0.5), 0 0 20px rgba(188, 19, 254, 0.3);
-    }
-
-    100% {
-        text-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
-    }
-}
-
-#text {
-    animation: pulse 3s infinite;
+.about-tab.active {
+    background: var(--accent-blue);
+    color: #fff;
+    font-weight: bold;
 }

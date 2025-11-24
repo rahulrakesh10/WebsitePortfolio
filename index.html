@@ -14,7 +14,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="stylesheet" href="assets/index.css"> -->
-    <link rel="stylesheet" href="darkmode.css" id="darkmode-css" disabled>
+
     <style>
         section {
             min-height: 100vh;
@@ -844,23 +844,23 @@
     <script>
         // Light/Dark mode toggle
         const themeToggle = document.getElementById('darkmode-toggle');
-        const darkModeCss = document.getElementById('darkmode-css');
+
         function setTheme(dark) {
             if (dark) {
                 document.body.classList.add('dark-mode');
-                darkModeCss.removeAttribute('disabled');
                 themeToggle.textContent = '☀️';
                 localStorage.setItem('theme', 'dark');
             } else {
                 document.body.classList.remove('dark-mode');
-                darkModeCss.setAttribute('disabled', '');
                 themeToggle.textContent = '🌙';
                 localStorage.setItem('theme', 'light');
             }
         }
+
         themeToggle.addEventListener('click', function () {
             setTheme(!document.body.classList.contains('dark-mode'));
         });
+
         // On load, set theme from localStorage or default to dark mode
         (function () {
             const saved = localStorage.getItem('theme');
