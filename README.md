@@ -11,13 +11,7 @@ A modern, responsive portfolio website with parallax effects, dark/light mode to
 - **Skills Section**: Visual representation of your technical skills
 - **Smooth Animations**: Shooting stars and smooth transitions
 
-## Adding Demo Videos
 
-### For VitaLink Project:
-1. Record your screen showing the VitaLink application in action
-2. Save the video as `vitalink-demo.mp4` (MP4 format recommended)
-3. Place the video file in the root directory of this project
-4. The video will automatically appear when users click "Watch Demo"
 
 ### Video Requirements:
 - **Format**: MP4 (primary) or WebM (fallback)
