@@ -13,11 +13,7 @@ A modern, responsive portfolio website with parallax effects, dark/light mode to
 
 
 
-### Video Requirements:
-- **Format**: MP4 (primary) or WebM (fallback)
-- **Resolution**: 1920x1080 or 1280x720 recommended
-- **Duration**: 30-60 seconds ideal
-- **File Size**: Keep under 10MB for fast loading
+
 
 ### Alternative Video Hosting:
 If you prefer to host the video elsewhere:
