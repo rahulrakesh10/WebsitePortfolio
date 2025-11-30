@@ -14,13 +14,6 @@ A modern, responsive portfolio website with parallax effects, dark/light mode to
 
 
 
-
-### Alternative Video Hosting:
-If you prefer to host the video elsewhere:
-1. Upload to YouTube/Vimeo and use embed code
-2. Use a CDN service for faster loading
-3. Update the video source in `index.html` line 483
-
 ## Setup
 
 1. Clone this repository
