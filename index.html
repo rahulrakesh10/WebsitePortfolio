@@ -203,64 +203,72 @@
         @media (max-width: 700px) {
             .project-carousel-3d {
                 display: flex;
-                flex-direction: row;
-                align-items: center;
+                flex-wrap: wrap;
+                /* Allow wrapping so buttons go to next line */
                 justify-content: center;
-                width: 100vw;
+                align-items: center;
+                width: 100%;
                 gap: 0;
                 padding: 0;
-                margin: 0;
+                margin-top: 20px;
                 position: relative;
             }
 
             #project-cards-3d {
-                width: 80vw;
-                min-width: 0;
+                order: 1;
+                /* Force cards to be first */
+                width: 100%;
                 height: auto;
                 display: flex;
-                align-items: center;
                 justify-content: center;
-                overflow: visible;
+                align-items: center;
+                margin-bottom: 20px;
+                perspective: none;
+                /* Disable 3D perspective on mobile */
             }
 
             .project-card-3d {
-                width: 78vw;
-                min-width: 0;
-                max-width: 90vw;
-                padding: 12px 6px;
-                font-size: 0.95em;
-                margin: 0 auto;
-                box-sizing: border-box;
+                /* Reset all positioning and 3D transforms for mobile */
                 position: relative;
+                width: 90%;
+                max-width: 400px;
+                min-height: auto;
+                margin: 0 auto;
+                opacity: 1;
+                transform: none !important;
+                display: none;
+                /* Hide all by default */
+                left: auto;
+                top: auto;
                 z-index: 1;
+            }
+
+            .project-card-3d.active {
+                display: block;
+                /* Only show active card */
+                z-index: 2;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                /* Ensure shadow is visible */
             }
 
             .project-card-3d.left,
             .project-card-3d.right {
                 display: none !important;
+                /* Hide side cards completely */
             }
 
             .carousel-btn {
-                width: 44px;
-                height: 44px;
-                font-size: 2em;
-                margin: 0 2vw;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10 !important;
+                order: 2;
+                /* Force buttons to be second */
+                width: 50px;
+                height: 50px;
+                font-size: 1.5em;
+                margin: 0 15px;
+                position: relative !important;
+                z-index: 10;
                 background: #252525;
                 color: #fff;
-                border: none;
-                border-radius: 50%;
-                position: relative !important;
-                opacity: 1;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            }
-
-            .carousel-btn:active,
-            .carousel-btn:focus {
-                outline: 2px solid #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             }
         }
 
