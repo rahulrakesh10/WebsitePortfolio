@@ -21,7 +21,3 @@ A modern, responsive personal portfolio website featuring smooth animations, par
 **Libraries/Frameworks:** [e.g., GSAP, Three.js, or React if applicable]  
 **Deployment:** GitHub Pages / Vercel / Netlify  
 **Version Control:** Git & GitHub  
-
----
-
-
