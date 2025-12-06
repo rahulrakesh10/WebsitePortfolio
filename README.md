@@ -24,5 +24,4 @@ A modern, responsive personal portfolio website featuring smooth animations, par
 
 ---
 
-## ⚙️ Installation & Setup
 
