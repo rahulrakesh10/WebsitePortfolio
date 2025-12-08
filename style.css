@@ -258,6 +258,7 @@ section {
     min-height: 110vh;
     z-index: 2;
     pointer-events: none;
+    will-change: bottom;
     /* Invert mountain in light mode if it's a dark silhouette, or adjust opacity */
 }
 
@@ -300,6 +301,7 @@ body:not(.dark-mode) #mountain {
     z-index: 3;
     font-weight: 800;
     letter-spacing: -2px;
+    will-change: top;
     line-height: 1;
     text-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
     mix-blend-mode: normal;
