@@ -1,12 +1,23 @@
-# Portfolio Website
+# 🌌 Portfolio Website
 
-A modern, responsive portfolio website with parallax effects, dark/light mode toggle, and interactive project showcase.
+A modern, responsive personal portfolio website featuring smooth animations, parallax effects, theme switching, and an interactive project showcase. Built to highlight creativity, technical skills, and experience in a visually engaging way.
 
-## Features
+---
 
-- **Parallax Background**: Dynamic scrolling effects with mountains and stars
-- **Dark/Light Mode**: Toggle between themes with persistent preference
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Interactive Projects**: 3D carousel showcasing your work
-- **Skills Section**: Visual representation of your technical skills
-- **Smooth Animations**: Shooting stars and smooth transitions
+## ✨ Features
+
+- **Parallax Background:** Multi-layered background with dynamic scrolling effects (stars, mountains, or galaxies).
+- **Dark/Light Mode:** Toggle between themes with saved user preferences for consistent viewing.
+- **Responsive Design:** Optimized layout for all screen sizes — desktop, tablet, and mobile.
+- **Interactive Projects:** 3D carousel to navigate and explore featured work.
+- **Skills Section:** Graphical representation of technical skills and tools.
+- **Smooth Animations:** Shooting stars, fade effects, and smooth transitions for an immersive experience.
+
+---
+
+## 🧰 Tech Stack
+
+**Frontend:** HTML5, CSS3, JavaScript (ES6+)  
+**Libraries/Frameworks:** [e.g., GSAP, Three.js, or React if applicable]  
+**Deployment:** GitHub Pages / Vercel / Netlify  
+**Version Control:** Git & GitHub  
