@@ -16,6 +16,9 @@
     --header-bg: rgba(255, 255, 255, 0.9);
     --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     --border-color: #e0e0e0;
+    --progress-color: var(--accent-blue);
+    --tab-hover-border: var(--accent-blue);
+    --tab-hover-shadow: rgba(0, 243, 255, 0.2);
 }
 
 body.dark-mode {
@@ -31,6 +34,9 @@ body.dark-mode {
     --header-bg: rgba(5, 5, 16, 0.7);
     --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     --border-color: rgba(255, 255, 255, 0.08);
+    --progress-color: #ffffff;
+    --tab-hover-border: #ffffff;
+    --tab-hover-shadow: rgba(255, 255, 255, 0.2);
 }
 
 * {
@@ -194,8 +200,8 @@ header ul li a.active,
 header ul li a:hover {
     color: var(--text-primary);
     background: rgba(125, 125, 125, 0.1);
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
-    border: 1px solid var(--accent-blue);
+    box-shadow: 0 0 15px var(--tab-hover-shadow);
+    border: 1px solid var(--tab-hover-border);
 }
 
 #darkmode-toggle {
@@ -230,7 +236,7 @@ header ul li a:hover {
 #progress-bar .progress {
     height: 100%;
     width: 0;
-    background: var(--accent-blue);
+    background: var(--progress-color);
     transition: width 0.1s ease-out;
 }
 
