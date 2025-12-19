@@ -21,6 +21,12 @@
     --tab-hover-shadow: rgba(0, 243, 255, 0.2);
     --section-hover-border: var(--accent-blue);
     --section-hover-shadow: rgba(0, 243, 255, 0.05);
+    --project-btn-color: var(--accent-blue);
+    --project-btn-border: var(--accent-blue);
+    --project-btn-hover-bg: var(--accent-blue);
+    --project-btn-hover-shadow: rgba(0, 243, 255, 0.4);
+    --card-active-shadow: rgba(0, 123, 255, 0.2);
+    --card-active-border: rgba(0, 123, 255, 0.4);
 }
 
 body.dark-mode {
@@ -41,6 +47,12 @@ body.dark-mode {
     --tab-hover-shadow: rgba(255, 255, 255, 0.2);
     --section-hover-border: #ffffff;
     --section-hover-shadow: rgba(255, 255, 255, 0.05);
+    --project-btn-color: #ffffff;
+    --project-btn-border: #ffffff;
+    --project-btn-hover-bg: #ffffff;
+    --project-btn-hover-shadow: rgba(255, 255, 255, 0.4);
+    --card-active-shadow: rgba(255, 255, 255, 0.15);
+    --card-active-border: rgba(255, 255, 255, 0.3);
 }
 
 * {
@@ -272,10 +284,6 @@ section {
     /* Invert mountain in light mode if it's a dark silhouette, or adjust opacity */
 }
 
-body:not(.dark-mode) #mountain {
-    /* Optional: adjustments for light mode mountain if needed */
-    /* filter: invert(1); */
-}
 
 #mountain::after {
     content: '';
@@ -452,23 +460,49 @@ p {
     margin-top: 15px;
     padding: 12px 24px;
     background: transparent;
-    color: var(--accent-blue);
+    color: var(--project-btn-color);
     text-decoration: none;
     border-radius: 50px;
     font-size: 0.95em;
     font-weight: 600;
     transition: all 0.3s ease;
-    border: 1px solid var(--accent-blue);
+    border: 1px solid var(--project-btn-border);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .project-link:hover {
-    background: var(--accent-blue);
+    background: var(--project-btn-hover-bg);
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
-    border-color: var(--accent-blue);
+    box-shadow: 0 0 20px var(--project-btn-hover-shadow);
+    border-color: var(--project-btn-hover-bg);
+}
+
+.demo-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: transparent;
+    color: var(--project-btn-color);
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid var(--project-btn-border);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-family: var(--font-body);
+}
+
+.demo-btn:hover {
+    background: var(--project-btn-hover-bg);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px var(--project-btn-hover-shadow);
+    border-color: var(--project-btn-hover-bg);
 }
 
 /* Responsive Design */
@@ -738,14 +772,14 @@ body.dark-mode .fa-github {
     transform: scale(1) translateX(0) rotateY(0deg);
     z-index: 3;
     pointer-events: auto;
-    box-shadow: 0 0 30px rgba(188, 19, 254, 0.15);
-    border: 1px solid rgba(188, 19, 254, 0.3);
+    box-shadow: 0 0 30px var(--card-active-shadow);
+    border: 1px solid var(--card-active-border);
 }
 
 .project-card-3d.active:hover {
     transform: scale(1.04) translateY(-8px) rotateY(0deg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 0 2px rgba(255, 255, 255, 0.2);
-    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 0 2px var(--card-active-border);
+    border: 1.5px solid var(--card-active-border);
     cursor: pointer;
 }
 
