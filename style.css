@@ -19,6 +19,8 @@
     --progress-color: var(--accent-blue);
     --tab-hover-border: var(--accent-blue);
     --tab-hover-shadow: rgba(0, 243, 255, 0.2);
+    --section-hover-border: var(--accent-blue);
+    --section-hover-shadow: rgba(0, 243, 255, 0.05);
 }
 
 body.dark-mode {
@@ -37,6 +39,8 @@ body.dark-mode {
     --progress-color: #ffffff;
     --tab-hover-border: #ffffff;
     --tab-hover-shadow: rgba(255, 255, 255, 0.2);
+    --section-hover-border: #ffffff;
+    --section-hover-shadow: rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -355,8 +359,8 @@ section#contact {
 section#about:hover,
 section#projects:hover,
 section#contact:hover {
-    box-shadow: 0 0 30px rgba(0, 243, 255, 0.05);
-    border-color: var(--accent-blue);
+    box-shadow: 0 0 30px var(--section-hover-shadow);
+    border-color: var(--section-hover-border);
 }
 
 h2 {
