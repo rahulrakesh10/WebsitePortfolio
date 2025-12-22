@@ -345,15 +345,16 @@ body.dark-mode #text {
 section#about,
 section#projects,
 section#contact {
-    background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 30px;
+    /* Removed card styling */
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 0;
     color: var(--text-primary);
-    box-shadow: var(--card-shadow);
+    box-shadow: none;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -367,8 +368,8 @@ section#contact {
 section#about:hover,
 section#projects:hover,
 section#contact:hover {
-    box-shadow: 0 0 30px var(--section-hover-shadow);
-    border-color: var(--section-hover-border);
+    box-shadow: none;
+    border-color: transparent;
 }
 
 h2 {
@@ -637,10 +638,12 @@ html {
     padding: 50px 20px;
     margin: 50px auto;
     width: 80%;
-    background: var(--bg-card);
-    border-radius: 15px;
+    /* background: var(--bg-card); Removed */
+    background: transparent;
+    /* border-radius: 15px; Removed */
     color: var(--text-primary);
-    box-shadow: var(--card-shadow);
+    /* box-shadow: var(--card-shadow); Removed */
+    box-shadow: none;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     gap: 24px;
@@ -920,22 +923,63 @@ body.dark-mode .skill-svg {
 }
 
 /* About Tabs */
+/* About Tabs - Larger Size */
+.about-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Fix alignment */
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
 .about-tab {
-    background: var(--bg-card);
-    color: var(--text-primary);
+    background: #252525;
+    color: #fff;
     border: none;
-    padding: 8px 22px;
-    border-radius: 18px 18px 0 0;
-    font-size: 1em;
+    padding: 12px 30px;
+    border-radius: 30px;
+    /* Fully rounded since not attached to card */
+    font-size: 1.3em;
     cursor: pointer;
     outline: none;
-    transition: background 0.2s, color 0.2s;
-    border: 1px solid var(--glass-border);
-    border-bottom: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    /* border: 1px solid var(--glass-border); Removed border for cleaner look */
+}
+
+.about-tab:hover {
+    background: #333;
+    transform: translateY(-2px);
 }
 
 .about-tab.active {
-    background: var(--accent-blue);
-    color: #fff;
-    font-weight: bold;
+    background: #ffffff;
+    /* Changed from blue to white */
+    color: #000;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Larger Text */
+.about-content p {
+    font-size: 1.5em;
+    /* Significantly larger */
+    line-height: 1.6;
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+    text-align: center;
+    /* Ensure centered text */
+}
+
+/* Larger Buttons */
+.resume-btn-large,
+.email-btn {
+    padding: 16px 36px !important;
+    font-size: 1.4em !important;
+}
+
+.social-icons .fa {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
 }
