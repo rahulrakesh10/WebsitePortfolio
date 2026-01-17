@@ -4,9 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rahul Rakesh - Computer Science Student specializing in Java, Python, React, and full-stack development. View my projects and portfolio.">
+    <meta name="keywords" content="Rahul Rakesh, Portfolio, Computer Science, Java Developer, Python Developer, React Developer, Web Developer, Software Engineer">
+    <meta name="author" content="Rahul Rakesh">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Rahul Rakesh's Portfolio">
+    <meta property="og:description" content="Computer Science Student specializing in Java, Python, React, and full-stack development.">
+    <meta property="og:url" content="https://rahulrakesh10.github.io">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Rahul Rakesh's Portfolio">
+    <meta property="twitter:description" content="Computer Science Student specializing in Java, Python, React, and full-stack development.">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/x-icon" href="Logo.jpg">
-    <title>Rahul Rakesh's Portfolio</title>
+    <title>Rahul Rakesh's Portfolio | Computer Science Student & Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -22,7 +37,7 @@
             overflow: hidden;
         }
 
-        section img {
+        section img:not(#mountain) {
             width: 100%;
             height: 115%;
             /* Try 110%–120% for most cases */
@@ -184,13 +199,18 @@
         }
 
         #mountain {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: auto;
-            z-index: 2;
+            position: absolute !important;
+            top: auto !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 110vh !important;
+            z-index: 2 !important;
             pointer-events: none;
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
 
         #moon {
@@ -205,6 +225,29 @@
             z-index: 3;
             pointer-events: none;
             opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            #mountain {
+                min-height: 80vh !important;
+                max-height: 90vh !important;
+                object-fit: cover !important;
+                object-position: bottom !important;
+            }
+
+            .parallax-bg {
+                min-height: 100vh !important;
+                overflow: hidden !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #mountain {
+                min-height: 70vh !important;
+                max-height: 80vh !important;
+                object-fit: cover !important;
+                object-position: bottom !important;
+            }
         }
 
         @media (max-width: 700px) {
@@ -433,10 +476,86 @@
             background: #333;
             color: #fff;
         }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--text-primary, #111);
+            color: var(--bg, #fff);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Loading Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Improved Project Card Links */
+        .project-card-3d .project-link,
+        .project-card-3d .demo-btn {
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        /* Better focus states for accessibility */
+        .carousel-btn:focus,
+        .about-tab:focus,
+        .project-link:focus,
+        .demo-btn:focus,
+        .email-btn:focus,
+        .resume-btn-large:focus,
+        .scroll-to-top:focus {
+            outline: 3px solid var(--accent-blue, #007bff);
+            outline-offset: 2px;
+        }
+
+        /* Smooth transitions for theme toggle */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#about" class="skip-to-main">Skip to main content</a>
+    
     <div id="starfield"></div>
     <!-- Scroll Progress Bar -->
     <div id="progress-bar">
@@ -445,13 +564,13 @@
 
     <!-- Navigation -->
     <header>
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        <a href="#" class="logo">Rahul Rakesh</a>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><button id="darkmode-toggle" aria-label="Toggle dark mode">☀️</button></li>
+        <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu" role="button" tabindex="0">☰</div>
+        <a href="#" class="logo" aria-label="Rahul Rakesh Home">Rahul Rakesh</a>
+        <ul role="menubar">
+            <li role="none"><a href="#" role="menuitem" aria-label="Home">Home</a></li>
+            <li role="none"><a href="#about" role="menuitem" aria-label="About">About</a></li>
+            <li role="none"><a href="#projects" role="menuitem" aria-label="Projects">Projects</a></li>
+            <li role="none"><button id="darkmode-toggle" aria-label="Toggle dark mode" tabindex="0">☀️</button></li>
         </ul>
     </header>
 
@@ -462,7 +581,7 @@
                 <span class="hero-line">WELCOME</span>
             </h2>
         </div>
-        <img src="mountain.png" id="mountain" alt="Mountain">
+        <img src="mountain.png" id="mountain" alt="Mountain landscape background" loading="lazy">
     </section>
 
 
@@ -548,8 +667,8 @@
     <section id="projects">
         <h2>Projects</h2>
         <div class="project-carousel-3d">
-            <button id="prev-project" class="carousel-btn">&lt;</button>
-            <div id="project-cards-3d">
+            <button id="prev-project" class="carousel-btn" aria-label="Previous project" title="Previous project">&lt;</button>
+            <div id="project-cards-3d" role="region" aria-label="Projects carousel">
                 <div class="project-card-3d">
                     <h3>NeuroScan</h3>
                     <p>NeuroScan is a reinforcement learning system for simulating and evaluating high‑performance
@@ -676,12 +795,16 @@
                         class="project-link">View on GitHub</a>
                 </div>
             </div>
-            <button id="next-project" class="carousel-btn">&gt;</button>
+            <button id="next-project" class="carousel-btn" aria-label="Next project" title="Next project">&gt;</button>
         </div>
     </section>
 
     <div id="react-projects"></div>
 
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
+        <i class="fa fa-arrow-up"></i>
+    </button>
 
     <!-- JavaScript -->
     <script>
@@ -811,8 +934,45 @@
     </script>
     <script>
         function toggleMenu() {
-            document.querySelector('header ul').classList.toggle('show');
+            const menu = document.querySelector('header ul');
+            menu.classList.toggle('show');
+            
+            // Focus management for accessibility
+            if (menu.classList.contains('show')) {
+                const firstLink = menu.querySelector('a');
+                if (firstLink) firstLink.focus();
+            }
         }
+
+        // Keyboard support for menu toggle
+        document.querySelector('.menu-toggle').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const menu = document.querySelector('header ul');
+            const toggle = document.querySelector('.menu-toggle');
+            if (menu && menu.classList.contains('show') && 
+                !menu.contains(e.target) && 
+                !toggle.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        // Close menu on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const menu = document.querySelector('header ul');
+                if (menu && menu.classList.contains('show')) {
+                    menu.classList.remove('show');
+                    document.querySelector('.menu-toggle')?.focus();
+                }
+            }
+        });
     </script>
     <script>
         document.querySelectorAll('header ul li a').forEach(link => {
@@ -940,6 +1100,110 @@
                 video.currentTime = 0;
             }
         }
+
+        // Scroll to Top Button
+        (function() {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
+                }
+            });
+
+            scrollBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Keyboard navigation for project carousel
+            let currentProjectIndex = 0;
+            const projectCards = document.querySelectorAll('.project-card-3d');
+            
+            function updateProjectCarousel(index) {
+                const cards = document.querySelectorAll('.project-card-3d');
+                cards.forEach((card, i) => {
+                    card.classList.remove('active', 'left', 'right');
+                    if (i === index) {
+                        card.classList.add('active');
+                    } else if (i === (index - 1 + cards.length) % cards.length) {
+                        card.classList.add('left');
+                    } else if (i === (index + 1) % cards.length) {
+                        card.classList.add('right');
+                    }
+                });
+                currentProjectIndex = index;
+            }
+
+            document.addEventListener('keydown', function(e) {
+                // Only handle if not typing in an input
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    const prevBtn = document.getElementById('prev-project');
+                    if (prevBtn) prevBtn.click();
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const nextBtn = document.getElementById('next-project');
+                    if (nextBtn) nextBtn.click();
+                }
+            });
+
+            // Touch/Swipe support for mobile carousel
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const projectCardsContainer = document.getElementById('project-cards-3d');
+            
+            if (projectCardsContainer) {
+                projectCardsContainer.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                projectCardsContainer.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    const diff = touchStartX - touchEndX;
+                    
+                    if (Math.abs(diff) > swipeThreshold) {
+                        if (diff > 0) {
+                            // Swipe left - next project
+                            document.getElementById('next-project')?.click();
+                        } else {
+                            // Swipe right - previous project
+                            document.getElementById('prev-project')?.click();
+                        }
+                    }
+                }
+            }
+
+            // Add fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe sections for animation
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        })();
     </script>
 </body>
 

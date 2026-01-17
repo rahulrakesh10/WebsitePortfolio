@@ -510,6 +510,18 @@ p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Mobile Mountain Styles */
+    #mountain {
+        min-height: 80vh !important;
+        max-height: 90vh !important;
+        object-fit: cover !important;
+        object-position: bottom !important;
+    }
+
+    .parallax-bg {
+        min-height: 100vh !important;
+        overflow: hidden !important;
+    }
 
     /* Responsive Nav */
     header ul {
@@ -606,6 +618,14 @@ p {
 }
 
 @media (max-width: 480px) {
+    /* Mobile Mountain Styles */
+    #mountain {
+        min-height: 70vh !important;
+        max-height: 80vh !important;
+        object-fit: cover !important;
+        object-position: bottom !important;
+    }
+
     #text {
         font-size: 3em;
     }
@@ -1026,4 +1046,100 @@ body.dark-mode .skill-svg {
     color: #000;
     /* Dark text for contrast */
     cursor: default;
+}
+
+/* Improved Project Card Styling */
+.project-card-3d {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card-3d.active {
+    animation: cardSlideIn 0.5s ease-out;
+}
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Better link styling in project cards */
+.project-card-3d .project-link,
+.project-card-3d .demo-btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card-3d .project-link::before,
+.project-card-3d .demo-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.project-card-3d .project-link:hover::before,
+.project-card-3d .demo-btn:hover::before {
+    left: 100%;
+}
+
+/* Improved focus states */
+.project-card-3d:focus-within {
+    outline: 2px solid var(--accent-blue, #007bff);
+    outline-offset: 4px;
+}
+
+/* Loading state for images */
+img {
+    transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"] {
+    opacity: 0;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* Smooth page transitions */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Better mobile menu animation */
+header ul {
+    transition: all 0.3s ease;
+}
+
+/* Improved button hover states */
+button, .project-link, .demo-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Accessibility: Skip to main content link */
+.skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--text-primary);
+    color: var(--bg);
+    padding: 8px;
+    text-decoration: none;
+    z-index: 10000;
+}
+
+.skip-to-main:focus {
+    top: 0;
 }
