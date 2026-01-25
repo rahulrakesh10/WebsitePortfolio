@@ -4,21 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rahul Rakesh - Computer Science Student specializing in Java, Python, React, and full-stack development. View my projects and portfolio.">
-    <meta name="keywords" content="Rahul Rakesh, Portfolio, Computer Science, Java Developer, Python Developer, React Developer, Web Developer, Software Engineer">
+    <meta name="description"
+        content="Rahul Rakesh - Computer Science Student specializing in Java, Python, React, and full-stack development. View my projects and portfolio.">
+    <meta name="keywords"
+        content="Rahul Rakesh, Portfolio, Computer Science, Java Developer, Python Developer, React Developer, Web Developer, Software Engineer">
     <meta name="author" content="Rahul Rakesh">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Rahul Rakesh's Portfolio">
-    <meta property="og:description" content="Computer Science Student specializing in Java, Python, React, and full-stack development.">
+    <meta property="og:description"
+        content="Computer Science Student specializing in Java, Python, React, and full-stack development.">
     <meta property="og:url" content="https://rahulrakesh10.github.io">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="Rahul Rakesh's Portfolio">
-    <meta property="twitter:description" content="Computer Science Student specializing in Java, Python, React, and full-stack development.">
-    
+    <meta property="twitter:description"
+        content="Computer Science Student specializing in Java, Python, React, and full-stack development.">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/x-icon" href="Logo.jpg">
     <title>Rahul Rakesh's Portfolio | Computer Science Student & Developer</title>
@@ -516,6 +520,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -555,7 +560,7 @@
 <body>
     <!-- Skip to main content for accessibility -->
     <a href="#about" class="skip-to-main">Skip to main content</a>
-    
+
     <div id="starfield"></div>
     <!-- Scroll Progress Bar -->
     <div id="progress-bar">
@@ -606,8 +611,7 @@
                         class="fa fa-envelope"></i>Email Me</a>
             </div>
             <div class="resume-section">
-                <a href="RahulRakesh.pdf" class="resume-btn-large" target="_blank"><i
-                        class="fa fa-file-pdf-o"></i>
+                <a href="RahulRakesh.pdf" class="resume-btn-large" target="_blank"><i class="fa fa-file-pdf-o"></i>
                     View Resume</a>
             </div>
         </div>
@@ -667,7 +671,8 @@
     <section id="projects">
         <h2>Projects</h2>
         <div class="project-carousel-3d">
-            <button id="prev-project" class="carousel-btn" aria-label="Previous project" title="Previous project">&lt;</button>
+            <button id="prev-project" class="carousel-btn" aria-label="Previous project"
+                title="Previous project">&lt;</button>
             <div id="project-cards-3d" role="region" aria-label="Projects carousel">
                 <div class="project-card-3d">
                     <h3>NeuroScan</h3>
@@ -737,6 +742,20 @@
                             class="project-link">GitHub</a>
                         <a href="https://chromewebstore.google.com/detail/lbiafkkkeifelibdhgnjciholockjlcc?utm_source=item-share-cb"
                             target="_blank" class="project-link">Download Link</a>
+                    </div>
+                </div>
+                <div class="project-card-3d">
+                    <h3>Schedula</h3>
+                    <p>Developed a serverless booking API using Azure Functions and JWT authentication.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span>JWT</span>
+                        <span>Azure</span>
+                        <span>Rest API</span>
+                    </div>
+                    <div style="display: flex; gap: 12px; justify-content: center; margin-top: 10px;">
+                        <a href="https://github.com/rahulrakesh10/Schedula" target="_blank"
+                            class="project-link">GitHub</a>
                     </div>
                 </div>
                 <div class="project-card-3d">
@@ -936,7 +955,7 @@
         function toggleMenu() {
             const menu = document.querySelector('header ul');
             menu.classList.toggle('show');
-            
+
             // Focus management for accessibility
             if (menu.classList.contains('show')) {
                 const firstLink = menu.querySelector('a');
@@ -945,7 +964,7 @@
         }
 
         // Keyboard support for menu toggle
-        document.querySelector('.menu-toggle').addEventListener('keydown', function(e) {
+        document.querySelector('.menu-toggle').addEventListener('keydown', function (e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 toggleMenu();
@@ -953,18 +972,18 @@
         });
 
         // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             const menu = document.querySelector('header ul');
             const toggle = document.querySelector('.menu-toggle');
-            if (menu && menu.classList.contains('show') && 
-                !menu.contains(e.target) && 
+            if (menu && menu.classList.contains('show') &&
+                !menu.contains(e.target) &&
                 !toggle.contains(e.target)) {
                 menu.classList.remove('show');
             }
         });
 
         // Close menu on Escape key
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 const menu = document.querySelector('header ul');
                 if (menu && menu.classList.contains('show')) {
@@ -1102,10 +1121,10 @@
         }
 
         // Scroll to Top Button
-        (function() {
+        (function () {
             const scrollBtn = document.querySelector('.scroll-to-top');
-            
-            window.addEventListener('scroll', function() {
+
+            window.addEventListener('scroll', function () {
                 if (window.pageYOffset > 300) {
                     scrollBtn.classList.add('visible');
                 } else {
@@ -1113,7 +1132,7 @@
                 }
             });
 
-            scrollBtn.addEventListener('click', function() {
+            scrollBtn.addEventListener('click', function () {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
@@ -1123,7 +1142,7 @@
             // Keyboard navigation for project carousel
             let currentProjectIndex = 0;
             const projectCards = document.querySelectorAll('.project-card-3d');
-            
+
             function updateProjectCarousel(index) {
                 const cards = document.querySelectorAll('.project-card-3d');
                 cards.forEach((card, i) => {
@@ -1139,10 +1158,10 @@
                 currentProjectIndex = index;
             }
 
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 // Only handle if not typing in an input
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-                
+
                 if (e.key === 'ArrowLeft') {
                     e.preventDefault();
                     const prevBtn = document.getElementById('prev-project');
@@ -1158,13 +1177,13 @@
             let touchStartX = 0;
             let touchEndX = 0;
             const projectCardsContainer = document.getElementById('project-cards-3d');
-            
+
             if (projectCardsContainer) {
-                projectCardsContainer.addEventListener('touchstart', function(e) {
+                projectCardsContainer.addEventListener('touchstart', function (e) {
                     touchStartX = e.changedTouches[0].screenX;
                 }, { passive: true });
 
-                projectCardsContainer.addEventListener('touchend', function(e) {
+                projectCardsContainer.addEventListener('touchend', function (e) {
                     touchEndX = e.changedTouches[0].screenX;
                     handleSwipe();
                 }, { passive: true });
@@ -1172,7 +1191,7 @@
                 function handleSwipe() {
                     const swipeThreshold = 50;
                     const diff = touchStartX - touchEndX;
-                    
+
                     if (Math.abs(diff) > swipeThreshold) {
                         if (diff > 0) {
                             // Swipe left - next project
@@ -1191,7 +1210,7 @@
                 rootMargin: '0px 0px -50px 0px'
             };
 
-            const observer = new IntersectionObserver(function(entries) {
+            const observer = new IntersectionObserver(function (entries) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('fade-in-up');
