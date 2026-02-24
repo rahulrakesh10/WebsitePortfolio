@@ -18,6 +18,5 @@ A modern, responsive personal portfolio website featuring smooth animations, par
 ## 🧰 Tech Stack
 
 **Frontend:** HTML5, CSS3, JavaScript (ES6+)  
-**Libraries/Frameworks:** 
 **Deployment:** GitHub Pages / Vercel / Netlify  
 **Version Control:** Git & GitHub  
