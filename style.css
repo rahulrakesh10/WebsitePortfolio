@@ -2,58 +2,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&display=swap');
 
 :root {
-    /* Light Mode (Default) */
-    --bg: #f0f2f5;
-    --bg-card: rgba(255, 255, 255, 0.8);
-    --text-primary: #1a1a1a;
-    --text-secondary: #4a4a4a;
-    --accent-blue: #007bff;
-    --accent-purple: #6f42c1;
-    --glass-border: rgba(0, 0, 0, 0.1);
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Outfit', sans-serif;
-    --star-color: #1a1a1a;
-    --header-bg: rgba(255, 255, 255, 0.9);
-    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    --border-color: #e0e0e0;
-    --progress-color: var(--accent-blue);
-    --tab-hover-border: var(--accent-blue);
-    --tab-hover-shadow: rgba(0, 243, 255, 0.2);
-    --section-hover-border: var(--accent-blue);
-    --section-hover-shadow: rgba(0, 243, 255, 0.05);
-    --project-btn-color: var(--accent-blue);
-    --project-btn-border: var(--accent-blue);
-    --project-btn-hover-bg: var(--accent-blue);
-    --project-btn-hover-shadow: rgba(0, 243, 255, 0.4);
-    --card-active-shadow: rgba(0, 123, 255, 0.2);
-    --card-active-border: rgba(0, 123, 255, 0.4);
-}
-
-body.dark-mode {
-    /* Dark Mode */
+    /* Single Theme (dark-style) */
     --bg: #000000;
     --bg-card: rgba(255, 255, 255, 0.03);
     --text-primary: #e0e0e0;
     --text-secondary: #a0a0a0;
-    --accent-blue: #ffffff;
-    /* Changed to white */
-    --accent-purple: #bc13fe;
+    --accent-orange: #ff7a00;
+    --accent-yellow: #ffe66d;
+    --accent-blue: #7dd3fc;
+    --accent-purple: #a78bfa;
     --glass-border: rgba(255, 255, 255, 0.08);
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Outfit', sans-serif;
     --star-color: #fff;
     --header-bg: rgba(0, 0, 0, 0.7);
     --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     --border-color: rgba(255, 255, 255, 0.08);
     --progress-color: #ffffff;
     --tab-hover-border: #ffffff;
-    --tab-hover-shadow: rgba(255, 255, 255, 0.2);
-    --section-hover-border: #ffffff;
-    --section-hover-shadow: rgba(255, 255, 255, 0.05);
+    --tab-hover-shadow: rgba(255, 255, 255, 0.25);
+    --section-hover-border: rgba(255, 255, 255, 0.35);
+    --section-hover-shadow: rgba(255, 255, 255, 0.08);
     --project-btn-color: #ffffff;
-    --project-btn-border: #ffffff;
-    --project-btn-hover-bg: #ffffff;
-    --project-btn-hover-shadow: rgba(255, 255, 255, 0.4);
-    --card-active-shadow: rgba(255, 255, 255, 0.15);
-    --card-active-border: rgba(255, 255, 255, 0.3);
+    --project-btn-border: rgba(255, 255, 255, 0.8);
+    --project-btn-hover-bg: rgba(255, 255, 255, 0.25);
+    --project-btn-hover-shadow: rgba(255, 255, 255, 0.25);
+    --card-active-shadow: rgba(255, 255, 255, 0.18);
+    --card-active-border: rgba(255, 255, 255, 0.35);
 }
 
 * {
@@ -80,19 +55,13 @@ body {
     height: 2px;
     background: var(--star-color);
     border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.1),
         0 0 0 2px rgba(255, 255, 255, 0.1),
         0 0 20px var(--star-color);
     animation: shooting-star-animation 3s linear infinite;
     z-index: 1;
     opacity: 0;
-}
-
-/* Update shadow for light mode visibility if needed, or use a variable for shadow opacity */
-body:not(.dark-mode) .shooting-star {
-    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05),
-        0 0 0 2px rgba(0, 0, 0, 0.05),
-        0 0 20px var(--star-color);
 }
 
 .shooting-star::before {
@@ -124,10 +93,6 @@ body:not(.dark-mode) .shooting-star {
     object-fit: contain;
     /* Invert moon color in light mode if needed, or keep as is if it's an image that works on both */
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-}
-
-body:not(.dark-mode) #moon {
-    filter: invert(1) drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
 }
 
 @keyframes shooting-star-animation {
@@ -172,7 +137,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: none;
     transition: all 0.3s ease;
 }
 
@@ -183,7 +148,8 @@ header .logo {
     color: var(--text-primary);
     text-decoration: none;
     letter-spacing: -0.5px;
-    text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+    /* Off-white glow to match the cloud background theme */
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.22);
 }
 
 header ul {
@@ -248,6 +214,7 @@ header ul li a:hover {
     height: 5px;
     background: transparent;
     z-index: 2000;
+    display: none;
 }
 
 #progress-bar .progress {
@@ -322,14 +289,110 @@ section {
     letter-spacing: -2px;
     will-change: top;
     line-height: 1;
-    text-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.18);
     mix-blend-mode: normal;
     /* Changed from overlay for better visibility in light mode */
 }
 
-body.dark-mode #text {
-    mix-blend-mode: overlay;
-    color: #fff;
+#hero-shader-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.42;
+    filter: brightness(0.88) contrast(0.95);
+}
+
+.shader-gradient {
+    background: linear-gradient(90deg, #ffffff 0%, #eaf2ff 45%, #f6fbff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+}
+
+.shader-trust-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(255, 165, 0, 0.08);
+    border: 1px solid rgba(255, 165, 0, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin-bottom: 26px;
+    z-index: 3;
+}
+
+.shader-trust-icon {
+    color: #ffe66d;
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+.shader-trust-text {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.shader-subtitle {
+    max-width: 62ch;
+    margin: 20px auto 0 auto;
+    padding: 0 10px;
+    color: var(--text-secondary);
+    font-size: 1.08em;
+    line-height: 1.65;
+    opacity: 0.95;
+}
+
+.shader-cta {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 26px;
+    z-index: 3;
+}
+
+.shader-btn {
+    border-radius: 999px;
+    padding: 14px 26px;
+    font-size: 1.05em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.shader-btn-primary {
+    background: linear-gradient(90deg, var(--accent-orange) 0%, var(--accent-yellow) 100%);
+    color: #111;
+    box-shadow: 0 10px 25px rgba(255, 200, 0, 0.15);
+}
+
+.shader-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(255, 200, 0, 0.25);
+}
+
+.shader-btn-secondary {
+    background: rgba(255, 165, 0, 0.08);
+    color: var(--text-primary);
+    border-color: rgba(255, 165, 0, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.shader-btn-secondary:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 165, 0, 0.14);
+    border-color: rgba(255, 165, 0, 0.35);
 }
 
 .hero-subtitle {
@@ -346,14 +409,13 @@ body.dark-mode #text {
 section#about,
 section#projects,
 section#contact {
-    /* Removed card styling */
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border: none;
-    border-radius: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 22px;
     color: var(--text-primary);
-    box-shadow: none;
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.05);
     text-align: center;
     /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
     display: flex;
@@ -369,8 +431,8 @@ section#contact {
 section#about:hover,
 section#projects:hover,
 section#contact:hover {
-    box-shadow: none;
-    border-color: transparent;
+    box-shadow: 0 26px 80px rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
 }
 
 h2 {
@@ -562,6 +624,22 @@ p {
         font-size: 5em;
     }
 
+    .shader-trust-badge {
+        margin-bottom: 18px;
+        padding: 9px 18px;
+    }
+
+    .shader-subtitle {
+        font-size: 1em;
+        margin-top: 14px;
+        line-height: 1.55;
+    }
+
+    .shader-btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
     section {
         height: auto;
         min-height: 80vh;
@@ -632,6 +710,16 @@ p {
         font-size: 3em;
     }
 
+    .shader-trust-badge {
+        margin-bottom: 14px;
+        padding: 8px 16px;
+    }
+
+    .shader-subtitle {
+        font-size: 0.95em;
+        margin-top: 12px;
+    }
+
     section {
         height: auto;
         min-height: 70vh;
@@ -662,12 +750,14 @@ html {
     padding: 50px 20px;
     margin: 50px auto;
     width: 80%;
-    /* background: var(--bg-card); Removed */
-    background: transparent;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
     /* border-radius: 15px; Removed */
     color: var(--text-primary);
-    /* box-shadow: var(--card-shadow); Removed */
-    box-shadow: none;
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 22px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     gap: 24px;
@@ -720,22 +810,12 @@ html {
 }
 
 .fa-linkedin {
-    background: #02abf9;
-    color: #fff;
-}
-
-.fa-github {
-    background: #333;
-    color: #fff;
-}
-
-body.dark-mode .fa-linkedin {
     background: #fff;
     color: #111;
     border: 2px solid #111;
 }
 
-body.dark-mode .fa-github {
+.fa-github {
     background: #fff;
     color: #111;
     border: none;
@@ -765,7 +845,7 @@ body.dark-mode .fa-github {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
 }
 
 /* Star styles for light/dark mode */
@@ -850,11 +930,11 @@ body.dark-mode .fa-github {
 }
 
 .carousel-btn:hover {
-    background: var(--accent-purple);
+    background: rgba(255, 255, 255, 0.12);
     color: #fff;
-    box-shadow: 0 0 20px rgba(188, 19, 254, 0.4);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
     transform: scale(1.1);
-    border-color: var(--accent-purple);
+    border-color: rgba(255, 255, 255, 0.55);
 }
 
 /* Skills List */
@@ -903,11 +983,6 @@ body.dark-mode .fa-github {
     overflow: visible;
 }
 
-body.dark-mode .skill-svg {
-    /* filter: brightness(0) invert(1); */
-    /* Only if needed for monochrome icons */
-}
-
 /* Resume Button */
 .resume-btn-large {
     display: inline-block;
@@ -923,7 +998,7 @@ body.dark-mode .skill-svg {
 }
 
 .resume-btn-large:hover {
-    background: var(--accent-purple);
+    background: rgba(255, 255, 255, 0.14);
     color: #fff;
 }
 
@@ -942,7 +1017,7 @@ body.dark-mode .skill-svg {
 }
 
 .email-btn:hover {
-    background: var(--accent-purple);
+    background: rgba(255, 255, 255, 0.14);
     color: #fff;
 }
 
@@ -958,9 +1033,9 @@ body.dark-mode .skill-svg {
 }
 
 .about-tab {
-    background: #252525;
-    color: #fff;
-    border: none;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     padding: 12px 30px;
     border-radius: 30px;
     /* Fully rounded since not attached to card */
@@ -968,20 +1043,19 @@ body.dark-mode .skill-svg {
     cursor: pointer;
     outline: none;
     transition: background 0.2s, color 0.2s, transform 0.2s;
-    /* border: 1px solid var(--glass-border); Removed border for cleaner look */
 }
 
 .about-tab:hover {
-    background: #333;
+    background: rgba(255, 255, 255, 0.12);
     transform: translateY(-2px);
 }
 
 .about-tab.active {
-    background: #ffffff;
-    /* Changed from blue to white */
-    color: #000;
+    background: linear-gradient(90deg, #ffffff 0%, #eaf2ff 100%);
+    color: #0b0b0f;
     font-weight: 700;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.55);
 }
 
 /* Larger Text */

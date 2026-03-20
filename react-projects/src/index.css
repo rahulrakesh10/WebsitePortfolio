@@ -1,7 +1,5 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-/* Assuming this is what user wants, though it might not exist if valid v4 doesn't support it directly without plugin. But user likely meant standard tailwind animate. I shall omit this or use proper equivalent. */
-/* User specifically asked to import "tw-animate-css" but I didn't install it. I'll stick to user snippet. */
+
 
 @theme {
   --color-border: hsl(240 5.9% 90%);

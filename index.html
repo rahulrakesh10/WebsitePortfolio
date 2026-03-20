@@ -140,10 +140,11 @@
             position: absolute;
             width: 320px;
             min-height: 220px;
-            background: rgba(134, 134, 147, 0.92);
+            background: rgba(255, 255, 255, 0.06);
             /* Stronger background for readability */
             border-radius: 16px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.18);
+            box-shadow: 0px 4px 20px rgba(125, 211, 252, 0.12);
+            border: 1px solid rgba(125, 211, 252, 0.25);
             text-align: center;
             padding: 28px 24px;
             color: #fff;
@@ -155,7 +156,7 @@
                 z-index 0s;
             z-index: 1;
             pointer-events: none;
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(12px);
         }
 
         .project-card-3d p {
@@ -185,9 +186,9 @@
         }
 
         .carousel-btn {
-            background: #252525;
+            background: rgba(255, 255, 255, 0.08);
             color: #fff;
-            border: none;
+            border: 1px solid rgba(125, 211, 252, 0.25);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -199,7 +200,8 @@
         }
 
         .carousel-btn:hover {
-            background: #000000;
+            background: rgba(125, 211, 252, 0.22);
+            border-color: rgba(125, 211, 252, 0.5);
         }
 
         #mountain {
@@ -320,9 +322,10 @@
                 margin: 0 15px;
                 position: relative !important;
                 z-index: 10;
-                background: #252525;
+                background: rgba(255, 255, 255, 0.08);
                 color: #fff;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(125, 211, 252, 0.25);
+                box-shadow: 0 4px 15px rgba(125, 211, 252, 0.12);
             }
 
 
@@ -360,11 +363,12 @@
         }
 
         .skills-list li {
-            background: #252525;
+            background: rgba(255, 255, 255, 0.06);
             color: #fff;
             padding: 8px 18px;
             border-radius: 16px;
             margin-bottom: 6px;
+            border: 1px solid rgba(125, 211, 252, 0.22);
         }
 
         .resume-section {
@@ -374,7 +378,7 @@
 
         .resume-btn-large {
             display: inline-block;
-            background: #111;
+            background: rgba(125, 211, 252, 0.14);
             color: #fff;
             border: none;
             border-radius: 18px;
@@ -391,7 +395,7 @@
         }
 
         .resume-btn-large:hover {
-            background: #333;
+            background: rgba(125, 211, 252, 0.26);
         }
 
         .about-content {
@@ -413,13 +417,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #252525;
+            background: rgba(255, 255, 255, 0.06);
             color: #fff;
             padding: 18px 18px 12px 18px;
             border-radius: 16px;
             font-size: 1.1em;
             min-width: 120px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(125, 211, 252, 0.22);
         }
 
         .skill-item i {
@@ -428,11 +433,12 @@
         }
 
         .skills-list li {
-            background: #252525;
+            background: rgba(255, 255, 255, 0.06);
             color: #fff;
             padding: 8px 18px;
             border-radius: 16px;
             margin-bottom: 6px;
+            border: 1px solid rgba(125, 211, 252, 0.22);
         }
 
         .skill-svg {
@@ -459,7 +465,7 @@
 
         .email-btn {
             display: inline-block;
-            background: #111;
+            background: rgba(255, 255, 255, 0.06);
             color: #fff;
             border: none;
             border-radius: 18px;
@@ -477,7 +483,7 @@
         }
 
         .email-btn:hover {
-            background: #333;
+            background: rgba(125, 211, 252, 0.26);
             color: #fff;
         }
 
@@ -575,18 +581,18 @@
             <li role="none"><a href="#" role="menuitem" aria-label="Home">Home</a></li>
             <li role="none"><a href="#about" role="menuitem" aria-label="About">About</a></li>
             <li role="none"><a href="#projects" role="menuitem" aria-label="Projects">Projects</a></li>
-            <li role="none"><button id="darkmode-toggle" aria-label="Toggle dark mode" tabindex="0">☀️</button></li>
         </ul>
     </header>
 
     <!-- Parallax Section -->
-    <section class="parallax-bg">
+    <section class="parallax-bg" id="shader-hero">
+        <canvas id="hero-shader-canvas" aria-hidden="true"></canvas>
+
         <div class="welcome-center">
-            <h2 id="text">
-                <span class="hero-line">WELCOME</span>
+            <h2 id="text" aria-label="Hero headline">
+                <span class="shader-gradient">WELCOME</span>
             </h2>
         </div>
-        <img src="mountain.png" id="mountain" alt="Mountain landscape background" loading="lazy">
     </section>
 
 
@@ -827,14 +833,13 @@
 
     <!-- JavaScript -->
     <script>
-        // Parallax effect for Welcome text, moon, and mountain
+        // Parallax effect for hero text
         let text = document.getElementById('text');
-        let moon = document.getElementById('moon');
-        let mountain = document.getElementById('mountain');
 
         let ticking = false;
 
         function parallaxScrollHandler() {
+            if (!text) return;
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     let value = window.scrollY;
@@ -857,8 +862,6 @@
                     // moon.style.left = left + 'vw';
                     // moon.style.top = top + 'vh';
 
-                    mountain.style.bottom = -value * 0.12 + 'px'; // Moves up slightly
-
                     ticking = false;
                 });
 
@@ -867,11 +870,190 @@
         }
 
         window.addEventListener('scroll', parallaxScrollHandler);
+
+        function initHeroShader() {
+            const canvas = document.getElementById('hero-shader-canvas');
+            if (!canvas) return;
+
+            const gl = canvas.getContext('webgl2', { antialias: true, alpha: true });
+            if (!gl) return;
+
+            const vertexShaderSource = `#version 300 es
+precision highp float;
+in vec4 position;
+void main(){gl_Position=position;}`;
+
+            const fragmentShaderSource = `#version 300 es
+/*********
+* made by Matthias Hurrle (@atzedent)
+*
+*	To explore strange new worlds, to seek out new life
+*	and new civilizations, to boldly go where no man has
+*	gone before.
+*/
+precision highp float;
+out vec4 O;
+uniform vec2 resolution;
+uniform float time;
+
+#define FC gl_FragCoord.xy
+#define T time
+#define R resolution
+#define MN min(R.x,R.y)
+
+float rnd(vec2 p) {
+  p=fract(p*vec2(12.9898,78.233));
+  p+=dot(p,p+34.56);
+  return fract(p.x*p.y);
+}
+
+float noise(in vec2 p) {
+  vec2 i=floor(p), f=fract(p), u=f*f*(3.-2.*f);
+  float a=rnd(i),
+        b=rnd(i+vec2(1,0)),
+        c=rnd(i+vec2(0,1)),
+        d=rnd(i+1.);
+  return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
+}
+
+float fbm(vec2 p) {
+  float t=.0, a=1.;
+  mat2 m=mat2(1.,-.5,.2,1.2);
+  for (int i=0; i<5; i++) {
+    t+=a*noise(p);
+    p*=2.*m;
+    a*=.5;
+  }
+  return t;
+}
+
+float clouds(vec2 p) {
+	float d=1., t=.0;
+	for (float i=.0; i<3.; i++) {
+		float a=d*fbm(i*10.+p.x*.2+.2*(1.+i)*p.y+d+i*i+p);
+		t=mix(t,d,a);
+		d=a;
+		p*=2./(i+1.);
+	}
+	return t;
+}
+
+void main(void) {
+	vec2 uv=(FC-.5*R)/MN,st=uv*vec2(2,1);
+	vec3 col=vec3(0);
+	float bg=clouds(vec2(st.x+T*.5,-st.y));
+	uv*=1.-.3*(sin(T*.2)*.5+.5);
+	for (float i=1.; i<12.; i++) {
+		uv+=.1*cos(i*vec2(.1+.01*i, .8)+i*i+T*.5+.1*uv.x);
+		vec2 p=uv;
+		float d=length(p);
+		// Keep the hero mostly monochrome (white-ish cloud highlights)
+		col+=.00075/d*(cos(sin(i)*vec3(1,1,1))+1.);
+		float b=noise(i+p+bg*1.731);
+		col+=.002*b/length(max(p,vec2(b*p.x*.02,p.y)));
+		// White-ish clouds with a slight cool tint
+		// Neutral / cool-gray clouds to avoid purple tint
+		col=mix(col,vec3(bg*.52),d*0.45);
+	}
+	// Overall dimming to avoid overly bright clouds
+	col *= 0.7;
+	O=vec4(col,1);
+}`;
+
+            const compile = (type, source) => {
+                const shader = gl.createShader(type);
+                if (!shader) return null;
+                gl.shaderSource(shader, source);
+                gl.compileShader(shader);
+                if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                    // eslint-disable-next-line no-console
+                    console.error('Hero shader compile error:', gl.getShaderInfoLog(shader));
+                    gl.deleteShader(shader);
+                    return null;
+                }
+                return shader;
+            };
+
+            const vs = compile(gl.VERTEX_SHADER, vertexShaderSource);
+            const fs = compile(gl.FRAGMENT_SHADER, fragmentShaderSource);
+            if (!vs || !fs) return;
+
+            const program = gl.createProgram();
+            if (!program) return;
+            gl.attachShader(program, vs);
+            gl.attachShader(program, fs);
+            gl.linkProgram(program);
+            if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+                // eslint-disable-next-line no-console
+                console.error('Hero shader link error:', gl.getProgramInfoLog(program));
+                return;
+            }
+
+            const positionLocation = gl.getAttribLocation(program, 'position');
+            const resolutionLocation = gl.getUniformLocation(program, 'resolution');
+            const timeLocation = gl.getUniformLocation(program, 'time');
+
+            const buffer = gl.createBuffer();
+            if (!buffer) return;
+            gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+
+            const vertices = new Float32Array([-1, 1, -1, -1, 1, 1, 1, -1]);
+            gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+            gl.enableVertexAttribArray(positionLocation);
+            gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+            let rafId = 0;
+
+            const resize = () => {
+                const rect = canvas.getBoundingClientRect();
+                const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
+                canvas.width = Math.max(1, rect.width * dpr);
+                canvas.height = Math.max(1, rect.height * dpr);
+                gl.viewport(0, 0, canvas.width, canvas.height);
+            };
+
+            const render = (now) => {
+                gl.clearColor(0, 0, 0, 1);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+
+                gl.useProgram(program);
+                if (resolutionLocation) gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+                if (timeLocation) gl.uniform1f(timeLocation, now * 1e-3);
+
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                rafId = requestAnimationFrame(render);
+            };
+
+            resize();
+            window.addEventListener('resize', resize);
+            render(0);
+
+            const primaryBtn = document.getElementById('hero-primary-btn');
+            if (primaryBtn) {
+                primaryBtn.addEventListener('click', () => {
+                    // eslint-disable-next-line no-console
+                    console.log('Get Started for Free clicked!');
+                });
+            }
+
+            const secondaryBtn = document.getElementById('hero-secondary-btn');
+            if (secondaryBtn) {
+                secondaryBtn.addEventListener('click', () => {
+                    // eslint-disable-next-line no-console
+                    console.log('Explore Features clicked!');
+                });
+            }
+        }
+
         window.addEventListener('load', () => {
             // Initial call to set positions
-            let value = window.scrollY;
-            text.style.top = 50 + value * 0.4 + 'px';
-            mountain.style.bottom = -value * 0.12 + 'px';
+            if (text) {
+                let value = window.scrollY;
+                text.style.top = 50 + value * 0.4 + 'px';
+            }
+
+            initHeroShader();
         });
 
         parallaxScrollHandler();
@@ -1072,37 +1254,6 @@
                 }
             });
         });
-    </script>
-    <script>
-        // Light/Dark mode toggle
-        const themeToggle = document.getElementById('darkmode-toggle');
-
-        function setTheme(dark) {
-            if (dark) {
-                document.body.classList.add('dark-mode');
-                themeToggle.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.body.classList.remove('dark-mode');
-                themeToggle.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        themeToggle.addEventListener('click', function () {
-            setTheme(!document.body.classList.contains('dark-mode'));
-        });
-
-        // On load, set theme from localStorage or default to dark mode
-        (function () {
-            const saved = localStorage.getItem('theme');
-            if (saved === 'light') {
-                setTheme(false);
-            } else {
-                // Default to dark mode if no saved preference or if saved is 'dark'
-                setTheme(true);
-            }
-        })();
     </script>
     <script>
         // VitaLink Demo Video Toggle
