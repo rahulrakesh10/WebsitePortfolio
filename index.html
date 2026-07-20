@@ -32,6 +32,7 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="staggered-menu.css">
     <link rel="canonical" href="https://rahulrakesh10.github.io">
     <!-- <link rel="stylesheet" href="assets/index.css"> -->
 
@@ -574,17 +575,74 @@
     </div>
 
     <!-- Navigation -->
-    <header>
-        <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu" role="button" tabindex="0">☰</div>
-        <a href="#" class="logo" aria-label="Rahul Rakesh Home">Rahul Rakesh</a>
-        <ul role="menubar">
-            <li role="none"><a href="#" role="menuitem" aria-label="Home" class="nav-link">Home</a></li>
-            <li role="none"><a href="#about" role="menuitem" aria-label="About" class="nav-link">About</a></li>
-            <li role="none"><a href="#experience" role="menuitem" aria-label="Experience" class="nav-link">Experience</a></li>
-            <li role="none"><a href="#projects" role="menuitem" aria-label="Projects" class="nav-link">Projects</a></li>
-            <li role="none"><a href="#contact" role="menuitem" aria-label="Contact" class="nav-link">Contact</a></li>
-        </ul>
-    </header>
+    <!-- Staggered Menu -->
+    <div class="staggered-menu-wrapper fixed-wrapper" style="--sm-accent: #ffffff" data-position="right">
+      <div class="sm-prelayers" aria-hidden="true">
+        <div class="sm-prelayer" style="background: rgba(30, 30, 30, 0.9)"></div>
+        <div class="sm-prelayer" style="background: rgba(20, 20, 20, 0.9)"></div>
+      </div>
+      
+      <header class="staggered-menu-header" aria-label="Main navigation header">
+        <a href="#" class="sm-logo" aria-label="Logo">
+          <span class="sm-logo-text">Rahul Rakesh</span>
+        </a>
+        <button class="sm-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="staggered-menu-panel" type="button">
+          <span class="sm-toggle-textWrap" aria-hidden="true">
+            <span class="sm-toggle-textInner">
+              <span class="sm-toggle-line">Menu</span>
+            </span>
+          </span>
+          <span class="sm-icon" aria-hidden="true">
+            <span class="sm-icon-line"></span>
+            <span class="sm-icon-line sm-icon-line-v"></span>
+          </span>
+        </button>
+      </header>
+
+      <aside id="staggered-menu-panel" class="staggered-menu-panel" aria-hidden="true">
+        <div class="sm-panel-inner">
+          <ul class="sm-panel-list" role="list" data-numbering="true">
+            <li class="sm-panel-itemWrap">
+              <a class="sm-panel-item" href="#" aria-label="Go to home page">
+                <span class="sm-panel-itemLabel">Home</span>
+              </a>
+            </li>
+            <li class="sm-panel-itemWrap">
+              <a class="sm-panel-item" href="#about" aria-label="Learn about me">
+                <span class="sm-panel-itemLabel">About</span>
+              </a>
+            </li>
+            <li class="sm-panel-itemWrap">
+              <a class="sm-panel-item" href="#experience" aria-label="View my experience">
+                <span class="sm-panel-itemLabel">Experience</span>
+              </a>
+            </li>
+            <li class="sm-panel-itemWrap">
+              <a class="sm-panel-item" href="#projects" aria-label="View my projects">
+                <span class="sm-panel-itemLabel">Projects</span>
+              </a>
+            </li>
+            <li class="sm-panel-itemWrap">
+              <a class="sm-panel-item" href="#contact" aria-label="Get in touch">
+                <span class="sm-panel-itemLabel">Contact</span>
+              </a>
+            </li>
+          </ul>
+          
+          <div class="sm-socials" aria-label="Social links">
+            <h3 class="sm-socials-title">Socials</h3>
+            <ul class="sm-socials-list" role="list">
+              <li class="sm-socials-item">
+                <a href="https://github.com/RahulRakesh10" target="_blank" rel="noopener noreferrer" class="sm-socials-link">GitHub</a>
+              </li>
+              <li class="sm-socials-item">
+                <a href="https://linkedin.com/in/rahul-rakesh10" target="_blank" rel="noopener noreferrer" class="sm-socials-link">LinkedIn</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
 
     <!-- Parallax / Hero Section -->
     <section class="parallax-bg" id="shader-hero">
@@ -1243,64 +1301,7 @@ void main(void) {
         // Start shooting stars when page loads
         window.addEventListener('load', startShootingStars);
     </script>
-    <script>
-        function toggleMenu() {
-            const menu = document.querySelector('header ul');
-            menu.classList.toggle('show');
 
-            // Focus management for accessibility
-            if (menu.classList.contains('show')) {
-                const firstLink = menu.querySelector('a');
-                if (firstLink) firstLink.focus();
-            }
-        }
-
-        // Keyboard support for menu toggle
-        document.querySelector('.menu-toggle').addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleMenu();
-            }
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function (e) {
-            const menu = document.querySelector('header ul');
-            const toggle = document.querySelector('.menu-toggle');
-            if (menu && menu.classList.contains('show') &&
-                !menu.contains(e.target) &&
-                !toggle.contains(e.target)) {
-                menu.classList.remove('show');
-            }
-        });
-
-        // Close menu on Escape key
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') {
-                const menu = document.querySelector('header ul');
-                if (menu && menu.classList.contains('show')) {
-                    menu.classList.remove('show');
-                    document.querySelector('.menu-toggle')?.focus();
-                }
-            }
-        });
-    </script>
-    <script>
-        document.querySelectorAll('header ul li a').forEach(link => {
-            link.addEventListener('click', function () {
-                document.querySelectorAll('header ul li a').forEach(item => item.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
-    <script>
-        // Auto-close menu after clicking a link
-        document.querySelectorAll('header ul li a').forEach(link => {
-            link.addEventListener('click', function () {
-                document.querySelector('header ul').classList.remove('show');
-            });
-        });
-    </script>
     <!-- <script type="module" src="assets/index.js"></script> -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -1485,7 +1486,7 @@ void main(void) {
 
             // Scroll-spy: update active nav link
             const navSections = ['shader-hero', 'about', 'experience', 'projects', 'contact'];
-            const navLinks = document.querySelectorAll('header ul .nav-link');
+            const navLinks = document.querySelectorAll('.sm-panel-item');
 
             const spyObserver = new IntersectionObserver(function (entries) {
                 entries.forEach(entry => {
@@ -1494,7 +1495,7 @@ void main(void) {
                         const id = entry.target.id;
                         // Home link maps to shader-hero
                         const href = id === 'shader-hero' ? '#' : '#' + id;
-                        const activeLink = document.querySelector(`header ul .nav-link[href="${href}"]`);
+                        const activeLink = document.querySelector(`.sm-panel-item[href="${href}"]`);
                         if (activeLink) activeLink.classList.add('active');
                     }
                 });
@@ -1506,6 +1507,8 @@ void main(void) {
             });
         })();
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="staggered-menu.js"></script>
 </body>
 
 </html>
