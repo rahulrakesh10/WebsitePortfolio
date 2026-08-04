@@ -228,7 +228,7 @@ section {
     z-index: 3;
     font-weight: 800;
     letter-spacing: -2px;
-    will-change: top;
+    will-change: transform;
     line-height: 1;
     text-shadow: 0 0 40px rgba(255, 255, 255, 0.18);
     mix-blend-mode: normal;
@@ -592,6 +592,16 @@ p {
     .project-link {
         font-size: 1em;
         padding: 12px 20px;
+    }
+
+    /* Disable heavy blurs on mobile for performance */
+    section#about,
+    section#projects,
+    section#contact,
+    .about-card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: linear-gradient(180deg, rgba(30, 30, 30, 0.8) 0%, rgba(20, 20, 20, 0.9) 100%) !important;
     }
 
 }

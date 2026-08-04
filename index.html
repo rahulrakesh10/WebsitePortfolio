@@ -1043,7 +1043,7 @@
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     let value = window.scrollY;
-                    text.style.top = 50 + value * 0.4 + 'px'; // Moves down as you scroll
+                    text.style.transform = `translateY(${value * 0.4}px)`; // Moves down as you scroll
 
                     // Moon calculation (kept existing logic although currently commented out style application in original)
                     let baseLeft = window.innerWidth < 600 ? 10 : window.innerWidth < 900 ? 35 : 55;
@@ -1069,7 +1069,7 @@
             }
         }
 
-        window.addEventListener('scroll', parallaxScrollHandler);
+        window.addEventListener('scroll', parallaxScrollHandler, { passive: true });
 
         function initHeroShader() {
             const canvas = document.getElementById('hero-shader-canvas');
@@ -1204,6 +1204,18 @@ void main(void) {
             gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
             let rafId = 0;
+            let isVisible = true;
+
+            const observer = new IntersectionObserver((entries) => {
+                isVisible = entries[0].isIntersecting;
+                if (isVisible) {
+                    rafId = requestAnimationFrame(render);
+                } else {
+                    cancelAnimationFrame(rafId);
+                }
+            });
+            const shaderHero = document.getElementById('shader-hero');
+            if (shaderHero) observer.observe(shaderHero);
 
             const resize = () => {
                 const rect = canvas.getBoundingClientRect();
@@ -1214,6 +1226,8 @@ void main(void) {
             };
 
             const render = (now) => {
+                if (!isVisible) return;
+                
                 gl.clearColor(0, 0, 0, 1);
                 gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -1284,7 +1298,7 @@ void main(void) {
             // Initial call to set positions
             if (text) {
                 let value = window.scrollY;
-                text.style.top = 50 + value * 0.4 + 'px';
+                text.style.transform = `translateY(${value * 0.4}px)`;
             }
 
             initHeroShader();
@@ -1299,7 +1313,7 @@ void main(void) {
             const totalHeight = document.body.scrollHeight - window.innerHeight;
             const progress = (window.scrollY / totalHeight) * 100;
             progressBar.style.width = progress + '%';
-        });
+        }, { passive: true });
 
         // Shooting Stars Effect
         function createShootingStar() {
@@ -1463,7 +1477,7 @@ void main(void) {
                 } else {
                     scrollBtn.classList.remove('visible');
                 }
-            });
+            }, { passive: true });
 
             scrollBtn.addEventListener('click', function () {
                 window.scrollTo({
