@@ -125,7 +125,7 @@
             gap: 0;
             margin-top: 30px;
             position: relative;
-            height: 320px;
+            height: 520px;
         }
 
         #project-cards-3d {
@@ -133,7 +133,7 @@
             align-items: center;
             justify-content: center;
             width: 600px;
-            height: 320px;
+            height: 520px;
             position: relative;
             perspective: 1200px;
         }
@@ -269,6 +269,7 @@
                 padding: 0;
                 margin-top: 20px;
                 position: relative;
+                height: auto;
             }
 
             #project-cards-3d {
@@ -290,6 +291,7 @@
                 width: 90%;
                 max-width: 400px;
                 min-height: auto;
+                height: 540px;
                 margin: 0 auto;
                 opacity: 1;
                 transform: none !important;
@@ -301,7 +303,8 @@
             }
 
             .project-card-3d.active {
-                display: block;
+                display: flex;
+                flex-direction: column;
                 /* Only show active card */
                 z-index: 2;
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -312,6 +315,18 @@
             .project-card-3d.right {
                 display: none !important;
                 /* Hide side cards completely */
+            }
+
+            .card-links {
+                flex-direction: column !important;
+                width: 100%;
+                gap: 12px !important;
+            }
+
+            .card-links .project-link, .card-links .demo-btn {
+                width: 100%;
+                box-sizing: border-box;
+                margin-top: 0 !important;
             }
 
             .carousel-btn {
@@ -678,6 +693,7 @@
                 University.
                 I specialize in full-stack development using React, Java, Node.js, Python, and Django, and enjoy
                 building user-focused applications.</p>
+            <p style="margin-top: 15px;"><strong>Certifications:</strong> Anthropic (Claude with the Anthropic API, Claude 101, AI Fluency) | Udemy (Intro to Cloud Computing on AWS)</p>
             <div class="about-contacts">
                 <div class="social-icons">
                     <a href="https://www.linkedin.com/in/rahulrakesh10/" class="fa fa-linkedin" target="_blank"></a>
@@ -763,6 +779,20 @@
     <section id="experience" class="reveal-section">
         <h2>Experience</h2>
         <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <h3>Machine Learning Engineer</h3>
+                        <span class="timeline-date">Jan. 2026 – Present</span>
+                    </div>
+                    <p class="timeline-company">Fly Rank · Remote</p>
+                    <p class="timeline-desc">Conducted machine learning research on signal analysis by processing and analyzing datasets to identify meaningful patterns and evaluate model performance. Developed Python-based data analysis workflows and visualizations to support experimentation, interpret results, and improve research efficiency. Collaborated with mentors to document research methodologies, experimental findings, and technical insights for an ongoing signal analysis research paper.</p>
+                    <div class="timeline-tags">
+                        <span>Python</span><span>Machine Learning</span><span>Data Analysis</span>
+                    </div>
+                </div>
+            </div>
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
