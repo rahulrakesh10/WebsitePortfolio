@@ -611,7 +611,7 @@
 
             <div class="shader-cta">
                 <a href="#projects" class="shader-btn shader-btn-primary" id="hero-primary-btn">View My Work</a>
-                <a href="RahulRakesh-4.pdf" target="_blank" class="shader-btn shader-btn-secondary"
+                <a href="RahulRakesh-Resume.pdf" target="_blank" class="shader-btn shader-btn-secondary"
                     id="hero-secondary-btn">
                     <i class="fa fa-file-pdf-o" style="margin-right:8px;"></i>Resume
                 </a>
@@ -642,7 +642,7 @@
                         class="fa fa-envelope"></i>Email Me</a>
             </div>
             <div class="resume-section">
-                <a href="RahulRakesh-4.pdf" class="resume-btn-large" target="_blank"><i class="fa fa-file-pdf-o"></i>
+                <a href="RahulRakesh-Resume.pdf" class="resume-btn-large" target="_blank"><i class="fa fa-file-pdf-o"></i>
                     View Resume</a>
             </div>
         </div>
@@ -723,17 +723,17 @@
                 <div class="timeline-content">
                     <div class="timeline-header">
                         <h3>Machine Learning Engineer</h3>
-                        <span class="timeline-date">Jul. 2026 – Present</span>
+                        <span class="timeline-date">Jun. 2026 – Present</span>
                     </div>
                     <p class="timeline-company">Fly Rank · Remote</p>
-                    <p class="timeline-desc">Conducted machine learning research on signal analysis by processing and
-                        analyzing datasets to identify meaningful patterns and evaluate model performance. Developed
-                        Python-based data analysis workflows and visualizations to support experimentation, interpret
-                        results, and improve research efficiency. Collaborated with mentors to document research
-                        methodologies, experimental findings, and technical insights for an ongoing signal analysis
-                        research paper.</p>
+                    <p class="timeline-desc">Built a Python data pipeline processing a 28,795-row search dataset
+                        (90-day trailing aggregates), engineering features across 4 signals with leakage-safe,
+                        client-grouped transformations. Benchmarked a Random Forest model against a baseline on a
+                        held-out 5,759-row test split, validating feature reliability using permutation importance.
+                        Shipped an automated decision-support API output ("Action Playbook") that replaced manual
+                        review with data-driven prioritization for downstream teams.</p>
                     <div class="timeline-tags">
-                        <span>Python</span><span>Machine Learning</span><span>Data Analysis</span>
+                        <span>Python</span><span>Machine Learning</span><span>Feature Engineering</span>
                     </div>
                 </div>
             </div>
@@ -745,13 +745,13 @@
                         <span class="timeline-date">Sept. 2024 – Present</span>
                     </div>
                     <p class="timeline-company">Self-Employed · Remote</p>
-                    <p class="timeline-desc">Delivered production-grade full-stack applications for 5+ clients using
-                        React, Node.js, Express.js, and PostgreSQL with RESTful API design. Improved website performance
-                        with 50% faster load times and 40% higher engagement through code optimisation, lazy loading,
-                        and SEO best practices. Led projects end-to-end: requirements gathering, system design, CI/CD
-                        pipelines, and deployment to AWS and Vercel.</p>
+                    <p class="timeline-desc">Built and maintained backend services and REST APIs for 5+ clients
+                        using Node.js, Express.js, and PostgreSQL, deployed to AWS with automated CI/CD pipelines.
+                        Improved application performance with 50% faster load times through backend optimization
+                        and query tuning. Owned projects end-to-end: requirements gathering, system design,
+                        automated deployment pipelines, and production releases on AWS.</p>
                     <div class="timeline-tags">
-                        <span>React</span><span>Node.js</span><span>Express.js</span><span>PostgreSQL</span><span>AWS</span><span>Vercel</span>
+                        <span>Node.js</span><span>Express.js</span><span>PostgreSQL</span><span>AWS</span><span>CI/CD</span>
                     </div>
                 </div>
             </div>
@@ -780,6 +780,24 @@
             <button id="prev-project" class="carousel-btn" aria-label="Previous project"
                 title="Previous project">&#8592;</button>
             <div id="project-cards-3d" role="region" aria-label="Projects carousel">
+                <div class="project-card-3d">
+                    <div class="card-icon">🔒</div>
+                    <h3>Anomalock</h3>
+                    <p>A real-time login anomaly detection service — FastAPI backend scoring high-volume login
+                        events against PostgreSQL-backed history, with a leakage-safe feature pipeline over 33M+
+                        events flagging impossible travel, brute-force patterns, and device/location novelty.
+                        Isolation Forest reached 60.5% recall vs. 21.1% for Random Forest at a fixed 20% review
+                        budget; containerized with Docker and deployed to production.</p>
+                    <div class="project-tech-stack">
+                        <span>Python</span>
+                        <span>FastAPI</span>
+                        <span>PostgreSQL</span>
+                        <span>Docker</span>
+                        <span>scikit-learn</span>
+                    </div>
+                    <a href="https://github.com/rahulrakesh10/anomalock" target="_blank" class="project-link">View on
+                        GitHub</a>
+                </div>
                 <div class="project-card-3d">
                     <div class="card-icon">🧠</div>
                     <h3>NeuroScan</h3>
@@ -812,12 +830,14 @@
                 <div class="project-card-3d">
                     <div class="card-icon">🏥</div>
                     <h3>VitaLink</h3>
-                    <p>Hackathon-winning AI healthcare assistant with a symptom chatbot and voice interface — built in
-                        24 hours at TerraHacks using a RAG pipeline and real-time voice synthesis.</p>
+                    <p>Hackathon-winning AI healthcare assistant built in 24 hours at TerraHacks 2025 — Django REST
+                        Framework APIs integrating Google Gemini for AI-assisted triage and a multi-factor hospital
+                        recommendation engine, with role-based access control across 3 tiers to enforce data
+                        privacy for patient records.</p>
                     <div class="project-tech-stack">
-                        <span>TypeScript</span>
-                        <span>Python</span>
-                        <span>AI/RAG</span>
+                        <span>Django REST Framework</span>
+                        <span>PostgreSQL</span>
+                        <span>Gemini API</span>
                     </div>
                     <div class="card-links">
                         <a href="https://github.com/abdulselamadillmohammed/terrahacks_healthcare" target="_blank"
@@ -868,12 +888,15 @@
                 <div class="project-card-3d">
                     <div class="card-icon">🎭</div>
                     <h3>FakeOut</h3>
-                    <p>A real-time multiplayer social deduction game — think Among Us meets trivia. Players bluff, vote,
-                        and eliminate imposters across custom lobbies with WebSocket sync.</p>
+                    <p>A real-time multiplayer social deduction game — Node.js/TypeScript backend handling game
+                        state via Socket.IO, sustaining sub-100ms latency and 99.5% uptime under concurrent load.
+                        Authoritative server-side state with room-based event handling and heartbeat monitoring;
+                        containerized and deployed via CI/CD, supporting 1,000+ production sessions.</p>
                     <div class="project-tech-stack">
+                        <span>Node.js</span>
                         <span>TypeScript</span>
-                        <span>WebSockets</span>
-                        <span>CSS</span>
+                        <span>Socket.IO</span>
+                        <span>Docker</span>
                     </div>
                     <div class="card-links">
                         <a href="https://github.com/rahulrakesh10/impostor-game" target="_blank"
@@ -893,19 +916,6 @@
                     </div>
                     <div class="card-links">
                         <a href="https://github.com/rahulrakesh10/WebsitePortfolio" target="_blank"
-                            class="project-link">View on GitHub</a>
-                    </div>
-                </div>
-                <div class="project-card-3d">
-                    <div class="card-icon">⌨️</div>
-                    <h3>Typing Test</h3>
-                    <p>A Python CLI typing speed test that measures real-time WPM and accuracy, with a live
-                        character-by-character diff, colour feedback, and a personal best leaderboard.</p>
-                    <div class="project-tech-stack">
-                        <span>Python</span>
-                    </div>
-                    <div class="card-links">
-                        <a href="https://github.com/rahulrakesh10/Projects/blob/main/TypingTest.py" target="_blank"
                             class="project-link">View on GitHub</a>
                     </div>
                 </div>
@@ -940,7 +950,7 @@
                 <span class="contact-card-value">/rahulrakesh10</span>
             </a>
         </div>
-        <a href="RahulRakesh-4.pdf" class="resume-btn-large" target="_blank" style="margin-top:40px;">
+        <a href="RahulRakesh-Resume.pdf" class="resume-btn-large" target="_blank" style="margin-top:40px;">
             <i class="fa fa-file-pdf-o"></i> Download Resume
         </a>
     </section>
