@@ -39,7 +39,10 @@
 }
 
 body {
-    background: var(--bg);
+    /* CSS fallback nebula so the page still has a backdrop if WebGL is
+       unavailable (e.g. hardware acceleration disabled on locked-down/public
+       machines) — the hero shader canvas draws over this when it works. */
+    background: radial-gradient(ellipse 140% 90% at 50% -10%, rgba(64, 46, 110, 0.55) 0%, rgba(18, 22, 46, 0.6) 35%, rgba(0, 0, 0, 0.9) 70%, #000 100%), var(--bg);
     min-height: 100vh;
     overflow-x: hidden;
     color: var(--text-primary);
