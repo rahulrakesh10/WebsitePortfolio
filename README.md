@@ -4,7 +4,7 @@ A modern, responsive personal portfolio website featuring smooth animations, par
 
 ---
 
-## ✨ Features
+##  Features
 
 - **Parallax Background:** Multi-layered background with dynamic scrolling effects (stars, mountains, or galaxies).
 - **Dark/Light Mode:** Toggle between themes with saved user preferences for consistent viewing.
