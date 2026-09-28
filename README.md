@@ -1,4 +1,4 @@
-# 🌌 Portfolio Website
+#  Portfolio Website
 
 A modern, responsive personal portfolio website featuring smooth animations, parallax effects, theme switching, and an interactive project showcase. Built to highlight creativity, technical skills, and experience in a visually engaging way.
 
