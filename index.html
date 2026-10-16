@@ -1145,15 +1145,31 @@ void main(void) {
 
             let rafId = 0;
 
+            // The clouds are soft and drawn at 42% opacity, so a small render
+            // buffer that the browser upscales looks identical but costs far less.
+            const RENDER_SCALE = 0.4;
+            const FRAME_MS = 1000 / 30;
+            let lastFrame = -1000;
+            let lastScroll = -1000;
+            window.addEventListener('scroll', () => { lastScroll = performance.now(); }, { passive: true });
+
             const resize = () => {
                 const rect = canvas.getBoundingClientRect();
-                const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
-                canvas.width = Math.max(1, rect.width * dpr);
-                canvas.height = Math.max(1, rect.height * dpr);
+                canvas.width = Math.max(1, Math.round(rect.width * RENDER_SCALE));
+                canvas.height = Math.max(1, Math.round(rect.height * RENDER_SCALE));
                 gl.viewport(0, 0, canvas.width, canvas.height);
+                lastFrame = -1000;
             };
 
             const render = (now) => {
+                rafId = requestAnimationFrame(render);
+                // Skip frames when hidden, while scrolling (keeps the last frame
+                // on screen), and to cap the shader at ~30fps.
+                if (document.hidden) return;
+                if (now - lastScroll < 120) return;
+                if (now - lastFrame < FRAME_MS) return;
+                lastFrame = now;
+
                 gl.clearColor(0, 0, 0, 1);
                 gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -1162,7 +1178,6 @@ void main(void) {
                 if (timeLocation) gl.uniform1f(timeLocation, now * 1e-3);
 
                 gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-                rafId = requestAnimationFrame(render);
             };
 
             resize();
@@ -1199,13 +1214,20 @@ void main(void) {
         parallaxScrollHandler();
         startShootingStars();    // Start effects after everything loads
 
-        // Scroll progress bar
-        window.addEventListener('scroll', function () {
+        // Scroll progress bar (batched per frame, no layout read per scroll event)
+        (function () {
             const progressBar = document.querySelector('#progress-bar .progress');
-            const totalHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = (window.scrollY / totalHeight) * 100;
-            progressBar.style.width = progress + '%';
-        }, { passive: true });
+            let pending = false;
+            window.addEventListener('scroll', function () {
+                if (pending) return;
+                pending = true;
+                requestAnimationFrame(function () {
+                    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    progressBar.style.width = (totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0) + '%';
+                    pending = false;
+                });
+            }, { passive: true });
+        })();
 
         // Shooting Stars Effect
         function createShootingStar() {

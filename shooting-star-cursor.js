@@ -41,7 +41,6 @@
       width: 100%; height: 100%;
       pointer-events: none;
       z-index: 999999;
-      mix-blend-mode: screen;
     `;
     document.body.appendChild(canvas);
     resize();
@@ -52,6 +51,7 @@
   function resize() {
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
+    if (ctx) start(); // resizing clears the canvas; redraw the head
   }
 
   // ─── CSS: hide system cursor ───────────────────────────────────────────────
@@ -91,11 +91,8 @@
       ctx.lineWidth  = Math.max(w0, 0.5);
       ctx.strokeStyle = grad;
       ctx.lineCap = 'round';
-      ctx.filter = 'blur(2px)';
       ctx.stroke();
     }
-
-    ctx.filter = 'none';
 
     // ── Core streak (sharp, thin) ───────────────────────────────────────────
     for (let i = 1; i < len; i++) {
@@ -157,9 +154,12 @@
   }
 
   // ─── Animation loop ───────────────────────────────────────────────────────
-  function animate() {
-    requestAnimationFrame(animate);
+  // Runs only while the trail is moving; stops once it has settled on the
+  // cursor and restarts on the next mouse move.
+  let running = false;
+  let settledFrames = 0;
 
+  function animate() {
     // Lerp smooth position toward mouse
     smoothX += (targetX - smoothX) * LERP_SPEED;
     smoothY += (targetY - smoothY) * LERP_SPEED;
@@ -169,12 +169,31 @@
     if (trail.length > TRAIL_LENGTH) trail.shift();
 
     draw();
+
+    const moving = Math.abs(targetX - smoothX) > 0.2 || Math.abs(targetY - smoothY) > 0.2;
+    settledFrames = moving ? 0 : settledFrames + 1;
+
+    // Once the head has stopped, let the tail collapse onto it, then stop
+    // looping. The last frame (the star head) stays on screen as the cursor.
+    if (settledFrames > TRAIL_LENGTH) {
+      running = false;
+      return;
+    }
+    requestAnimationFrame(animate);
+  }
+
+  function start() {
+    if (running || document.hidden) return;
+    running = true;
+    settledFrames = 0;
+    requestAnimationFrame(animate);
   }
 
   // ─── Events ───────────────────────────────────────────────────────────────
   function onMouseMove(e) {
     targetX = e.clientX;
     targetY = e.clientY;
+    start();
   }
 
   // ─── Init ─────────────────────────────────────────────────────────────────
@@ -183,7 +202,6 @@
     injectCSS();
     createCanvas();
     document.addEventListener('mousemove', onMouseMove, { passive: true });
-    animate();
   }
 
   if (document.readyState === 'loading') {

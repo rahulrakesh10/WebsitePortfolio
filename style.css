@@ -39,15 +39,24 @@
 }
 
 body {
-    /* CSS fallback nebula so the page still has a backdrop if WebGL is
-       unavailable (e.g. hardware acceleration disabled on locked-down/public
-       machines) — the hero shader canvas draws over this when it works. */
-    background: radial-gradient(ellipse 140% 90% at 50% 0%, rgba(58, 58, 62, 0.45) 0%, rgba(26, 26, 29, 0.6) 45%, rgba(8, 8, 9, 0.9) 100%), var(--bg);
-    background-attachment: fixed;
+    background: var(--bg);
     min-height: 100vh;
     overflow-x: hidden;
     color: var(--text-primary);
     transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* CSS fallback nebula so the page still has a backdrop if WebGL is
+   unavailable (e.g. hardware acceleration disabled on locked-down/public
+   machines). A fixed pseudo-element (not background-attachment: fixed) so
+   scrolling doesn't force a repaint; the hero shader canvas draws over it. */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(ellipse 140% 90% at 50% 0%, rgba(58, 58, 62, 0.45) 0%, rgba(26, 26, 29, 0.6) 45%, rgba(8, 8, 9, 0.9) 100%);
 }
 
 /* Shooting Stars */
@@ -188,7 +197,6 @@ section {
     z-index: 0;
     pointer-events: none;
     opacity: 0.42;
-    filter: brightness(0.88) contrast(0.95);
 }
 
 .shader-gradient {
