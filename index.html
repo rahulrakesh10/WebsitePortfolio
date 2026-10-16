@@ -828,7 +828,7 @@
                         APIs integrating Google Gemini for AI-assisted triage, with role-based access control to
                         protect patient data.</p>
                     <div class="project-tech-stack">
-                        <span>Django REST Framework</span>
+                        <span>Django REST</span>
                         <span>PostgreSQL</span>
                         <span>Gemini API</span>
                     </div>
@@ -836,14 +836,6 @@
                         <a href="https://github.com/abdulselamadillmohammed/terrahacks_healthcare" target="_blank"
                             class="project-link">GitHub</a>
                         <button class="demo-btn" onclick="toggleVitaLinkDemo()">Watch Demo</button>
-                    </div>
-                    <div id="vitalink-demo" class="demo-video-container" style="display: none;">
-                        <video id="vitalink-video" controls width="100%" style="border-radius: 8px; margin-top: 15px;">
-                            <source src="vitalink-demo.mp4" type="video/mp4">
-                            <source src="vitalink-demo.webm" type="video/webm">
-                            Your browser does not support the video tag.
-                        </video>
-                        <button class="close-demo-btn" onclick="toggleVitaLinkDemo()">×</button>
                     </div>
                 </div>
                 <div class="project-card-3d">
@@ -958,6 +950,17 @@
     </footer>
 
     <div id="react-projects"></div>
+
+    <!-- VitaLink demo video modal -->
+    <div id="vitalink-demo" class="demo-modal" role="dialog" aria-modal="true" aria-label="VitaLink demo video" hidden>
+        <div class="demo-modal-inner">
+            <button class="close-demo-btn" type="button" aria-label="Close demo" onclick="toggleVitaLinkDemo()">&times;</button>
+            <video id="vitalink-video" controls playsinline preload="none">
+                <source src="vitalink-demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
 
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
@@ -1341,20 +1344,32 @@ void main(void) {
         });
     </script>
     <script>
-        // VitaLink Demo Video Toggle
+        // VitaLink Demo Video Modal
         function toggleVitaLinkDemo() {
-            const demoContainer = document.getElementById('vitalink-demo');
+            const modal = document.getElementById('vitalink-demo');
             const video = document.getElementById('vitalink-video');
 
-            if (demoContainer.style.display === 'none') {
-                demoContainer.style.display = 'block';
-                video.play();
+            if (modal.hidden) {
+                modal.hidden = false;
+                document.body.style.overflow = 'hidden';
+                video.play().catch(() => { });
             } else {
-                demoContainer.style.display = 'none';
+                modal.hidden = true;
+                document.body.style.overflow = '';
                 video.pause();
                 video.currentTime = 0;
             }
         }
+
+        (function () {
+            const modal = document.getElementById('vitalink-demo');
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) toggleVitaLinkDemo();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && !modal.hidden) toggleVitaLinkDemo();
+            });
+        })();
 
         // Scroll to Top Button
         (function () {
